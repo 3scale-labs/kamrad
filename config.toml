@@ -1,3 +1,31 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Kamrad"
+
+# Theme
+theme = "smol"
+
+## Parameters
+[params]
+subtitle = "Kamrad, the Kuadrant's developer portal"
+dateFmt = "11.05.2021 15:51"
+
+## Header
+[menu]
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 1
+
+[[menu.main]]
+identifier = "docs"
+name = "Docs"
+url = "/docs/"
+weight = 2
+
+## Footer
+[[menu.footer]]
+name = "Github"
+url = "https://github.com/3scale-labs/kamrad"
+weight = 1
