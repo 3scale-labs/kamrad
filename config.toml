@@ -1,6 +1,5 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "Kamrad"
 
 # Theme
 theme = "smol"
@@ -28,4 +27,15 @@ weight = 2
 [[menu.footer]]
 name = "Github"
 url = "https://github.com/3scale-labs/kamrad"
+weight = 1
+
+
+# I18N
+DefaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+[languages.en]
+title = "Kamrad"
+languageName = "English"
 weight = 1
