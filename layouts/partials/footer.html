@@ -4,7 +4,10 @@
 		<a href="{{ .URL }}"><b>{{ .Name }}</b></a>.
 		{{- end }}
 	</p>
+	<div id="greeter"></div>
 </footer>
 
-{{ $js := resources.Get "js/index.ts" | babel | js.Build (dict "minify" false "params" (dict "myparam" "Kamrad Rocks!") ) }}
+{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
+{{ $opts := dict "params" (dict "name" "Kamrad") "defines" (dict "process.env.NODE_ENV" $env) }}
+{{ $js := resources.Get "js/index.ts" | babel | js.Build $opts }}
 <script src="{{ $js.RelPermalink }}"></script>
