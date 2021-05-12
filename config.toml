@@ -1,5 +1,6 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
+noJSConfigInAssets = true
 
 # Theme
 theme = "smol"
