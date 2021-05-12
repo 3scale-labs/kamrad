@@ -5,3 +5,6 @@
 		{{- end }}
 	</p>
 </footer>
+
+{{ $js := resources.Get "js/index.ts" | babel | js.Build (dict "minify" false "params" (dict "myparam" "Kamrad Rocks!") ) }}
+<script src="{{ $js.RelPermalink }}"></script>
