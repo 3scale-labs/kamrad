@@ -1,9 +1,13 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Greeter } from './greeter/Greeter'
-import * as params from '@params'
 
-ReactDOM.render(
-	React.createElement(Greeter, {userName: params.name}),
-	document.getElementById('greeter')
-)
+const containerId = 'greeter'
+
+document.addEventListener('DOMContentLoaded', function () {
+	const container = document.getElementById(containerId)
+	ReactDOM.render(
+		React.createElement(Greeter, {userName: container.dataset.name}),
+		container
+	)
+})
