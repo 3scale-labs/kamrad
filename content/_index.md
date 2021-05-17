@@ -10,4 +10,4 @@ Kamrad provides an easy and usable way to craft content and display your APIs re
 
 In a beautiful UI, you could check metrics, usage and manage your developer credentials.
 
-{{< greeter "Kamrad from home!!!" >}}
+{{< greeter 1 >}}

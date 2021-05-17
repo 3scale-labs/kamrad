@@ -7,7 +7,7 @@ const containerId = 'greeter'
 document.addEventListener('DOMContentLoaded', function () {
 	const container = document.getElementById(containerId)
 	ReactDOM.render(
-		React.createElement(Greeter, {userName: container.dataset.name}),
+		React.createElement(Greeter, {id: container.dataset.id}),
 		container
 	)
 })
