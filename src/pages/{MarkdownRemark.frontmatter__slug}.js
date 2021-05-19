@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import markdownTemplate from '../utils/markdownTemplate'
 
@@ -36,7 +36,6 @@ const Template = ({
           />
         </div>
       </div>
-      <Link to="/">Go back to Home</Link> <br />
     </Layout>
   )
 }

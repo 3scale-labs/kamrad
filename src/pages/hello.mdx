@@ -1,0 +1,32 @@
+import { graphql } from "gatsby"
+
+# My MDX Page
+
+Here's a paragraph (written in markdown)
+
+<p>Paragraph in JSX (with site metadata): {props.data.site.siteMetadata.description}</p>
+<p>List of users (downloaded from public API, available inside markdown, iterating with JSX): </p>
+<ul>
+  {props.data.allUser.nodes.map(
+    user => <li>Username: {user.username}</li>
+  )}
+</ul>
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        description
+        title
+      }
+    }
+    allUser {
+      nodes {
+        username
+        name
+        email
+        id
+      }
+    }
+  }
+`

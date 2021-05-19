@@ -11,6 +11,9 @@ const IndexPage: React.FC = () => (
     <p>
       This is a markdown page: <Link to="/pages/page-1">Page 1</Link>
     </p>
+    <p>
+      This is a MDX (markdown + JSX) page: <Link to="/hello">Hello</Link>
+    </p>
   </Layout>
 )
 

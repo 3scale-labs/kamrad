@@ -5,6 +5,7 @@ module.exports = {
     author: `damianpm`
   },
   plugins: [
+    `gatsby-fetch-api`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
@@ -17,11 +18,19 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown-pages`,
-        path: `${__dirname}/src/markdown-pages`
+        name: `md-pages`,
+        path: `${__dirname}/src/md-pages`
       }
     },
     `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        defaultLayouts: {
+          "default": require.resolve("./src/components/layout.tsx")
+        },
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
