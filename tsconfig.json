@@ -1,14 +1,25 @@
 {
   "compilerOptions": {
-	"baseUrl": "src",
-	"target": "es5",
-	"noImplicitAny": true,
-	"module": "es6",
-	"jsx": "react",
-	"allowJs": true,
-	"moduleResolution": "node"
+    "baseUrl": "src",
+    "target": "es5",
+    "noImplicitAny": true,
+    "module": "es6",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+    "pretty": true
   },
   "include": [
-	"src/**/*"
+    "./assets/**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./public",
+    "./themes"
   ]
 }
