@@ -1,5 +1,13 @@
-import { FetchEvent, Client } from "../types/service-worker"
-import { isTokenSetEvent, setTokenEvent, clearTokenEvent } from "./authHelper"
+import { FetchEvent } from "../types/service-worker"
+import {
+	AuthEventData,
+	checkTokenEvent,
+	setTokenEvent,
+	tokenSetEvent,
+	clearTokenEvent,
+	tokenClearedEvent,
+	authBroadCastChannelName
+} from "./authHelper"
 
 // TODO: Get whitelistedOrigins from ENV.
 const whitelistedOrigins: string[] = [
@@ -14,19 +22,32 @@ const worker = self as unknown as ServiceWorker
 // This is safe, it resides within the scope of the Service Worker
 let token: string = ''
 
-const setToken = (event: MessageEvent) => {
-	if (event.data.type === setTokenEvent) {
-		token = event.data.token
-		console.log("token set!")
-	}
+const authBroadcastChannel = new BroadcastChannel(authBroadCastChannelName)
+
+const setToken = (value: string) => {
+	token = value
+	authBroadcastChannel.postMessage({type: tokenSetEvent})
+	console.log("token set!")
 }
 
-const clearToken = (event: MessageEvent) => {
-	if (event.data.type === clearTokenEvent) {
-		token = ''
-		console.log("token cleared!")
-	}
+const clearToken = () => {
+	token = ''
+	authBroadcastChannel.postMessage({type: tokenClearedEvent})
+	console.log("token cleared!")
 }
+
+const checkToken = () => {
+	authBroadcastChannel.postMessage({type: checkTokenEvent, payload: token.length > 0})
+	console.log('Token?', token.length > 0)
+}
+
+const messageEventsHandlers = (data: AuthEventData<any>) => ({
+	[setTokenEvent]: () => setToken(data.payload),
+	[clearTokenEvent]: clearToken,
+	[checkTokenEvent]: checkToken
+})[data.type]
+
+worker.addEventListener('message', ({data}: MessageEvent) => messageEventsHandlers(data)())
 
 const addAuthHeader = function (event: FetchEvent) {
 	const destURL = new URL(event.request.url)
@@ -38,20 +59,4 @@ const addAuthHeader = function (event: FetchEvent) {
 	}
 }
 
-const checkToken = (event: MessageEvent) => {
-	if (event.data.type === isTokenSetEvent) {
-		console.log('Token?', token.length > 0)
-		// @ts-ignore Client interface is not included in TS
-		worker.clients.matchAll()
-			.then((clientList: Client[]) => (
-				// Communicate to every client listening the state of the token
-				clientList.forEach((client) => client.postMessage(token.length > 0))
-			))
-	}
-}
-
-// add event listeners for received messages
-[setToken, clearToken, checkToken].forEach(
-	action => worker.addEventListener('message', action)
-)
 worker.addEventListener('fetch', addAuthHeader)
