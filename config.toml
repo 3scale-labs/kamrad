@@ -1,6 +1,5 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-noJSConfigInAssets = true
 
 # Theme
 theme = "smol"
@@ -46,3 +45,7 @@ defaultContentLanguageInSubdir = false
 title = "Kamrad"
 languageName = "English"
 weight = 1
+
+# Build
+[build]
+  noJSConfigInAssets = true
