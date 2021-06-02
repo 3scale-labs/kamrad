@@ -1,1 +1,5 @@
 <div id="greeter" data-id="{{.Get 0}}"></div>
+{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
+{{ $opts := dict "defines" (dict "process.env.NODE_ENV" $env) }}
+{{ $js := resources.Get "js/greeter.ts" | babel | js.Build $opts }}
+<script src="{{ $js.RelPermalink }}"></script>

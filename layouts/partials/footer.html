@@ -6,11 +6,6 @@
 	</p>
 </footer>
 
-{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
-{{ $opts := dict "defines" (dict "process.env.NODE_ENV" $env) }}
-{{ $js := resources.Get "js/index.ts" | babel | js.Build $opts }}
-<script src="{{ $js.RelPermalink }}"></script>
-
 {{ $serviceWorker := resources.Get "js/auth/authServiceWorker.ts" | babel | js.Build (dict "targetPath" "/authServiceWorker.js") }}
 
 <script>
@@ -24,4 +19,7 @@
 			})
 		})
 	}
+	// Redirect to login page if not authenticated
+	if (!/\/login?./.test(window.location.pathname) && !window.localStorage.getItem('isAuthenticated')) window.location = '/login'
+
 </script>
