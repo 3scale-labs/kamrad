@@ -1,0 +1,22 @@
+<header>
+	{{ strings.Repeat ( .Site.Title | len | add 6 ) "=" }}<br>
+	== <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a> ==<br>
+	{{ strings.Repeat ( .Site.Title | len | add 6 ) "=" }}
+	<div style="float: right;">{{ .Site.Params.subtitle }} <span id="logoutButton"></span></div><br>
+	<p>
+	<nav>
+			<a href="/"><b>Start</b></a>.
+			{{ with .Site.Menus.main }}
+			{{ range . }}
+			<a href="{{ .URL | relURL }}"><b>{{ .Name }}</b></a>.
+			{{ end }}
+	</nav>
+	</p>
+	{{ end }}
+
+	{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
+	{{ $opts := dict "defines" (dict "process.env.NODE_ENV" $env) }}
+	{{ $js := resources.Get "js/logoutButton.ts" | babel | js.Build $opts }}
+	<script src="{{ $js.RelPermalink }}"></script>
+
+</header>
