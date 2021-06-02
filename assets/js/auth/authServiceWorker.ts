@@ -1,13 +1,10 @@
 import { FetchEvent } from "../types/service-worker"
 import {
+	AuthMessageEvent,
+	AuthBroadcastEvent,
 	AuthEventData,
-	checkTokenEvent,
-	setTokenEvent,
-	tokenSetEvent,
-	clearTokenEvent,
-	tokenClearedEvent,
 	authBroadCastChannelName
-} from "./authHelper"
+} from "./types"
 
 // TODO: Get whitelistedOrigins from ENV.
 const whitelistedOrigins: string[] = [
@@ -26,30 +23,32 @@ const authBroadcastChannel = new BroadcastChannel(authBroadCastChannelName)
 
 const setToken = (value: string) => {
 	token = value
-	authBroadcastChannel.postMessage({type: tokenSetEvent})
+	authBroadcastChannel.postMessage({type: AuthBroadcastEvent.TokenSetEvent})
 	console.log("token set!")
 }
 
 const clearToken = () => {
 	token = ''
-	authBroadcastChannel.postMessage({type: tokenClearedEvent})
+	authBroadcastChannel.postMessage({type: AuthBroadcastEvent.TokenClearedEvent})
 	console.log("token cleared!")
 }
 
 const checkToken = () => {
-	authBroadcastChannel.postMessage({type: checkTokenEvent, payload: token.length > 0})
+	authBroadcastChannel.postMessage({type: AuthMessageEvent.CheckTokenEvent, payload: token.length > 0})
 	console.log('Token?', token.length > 0)
 }
 
-const messageEventsHandlers = (data: AuthEventData<any>) => ({
-	[setTokenEvent]: () => setToken(data.payload),
-	[clearTokenEvent]: clearToken,
-	[checkTokenEvent]: checkToken
-})[data.type]
+const messageEventsHandlers = ({data}: MessageEvent<AuthEventData<AuthMessageEvent,any>>) => (
+	{
+		[AuthMessageEvent.SetTokenEvent]: () => setToken(data.payload),
+		[AuthMessageEvent.ClearTokenEvent]: clearToken,
+		[AuthMessageEvent.CheckTokenEvent]: checkToken
+	}[data.type]()
+)
 
-worker.addEventListener('message', ({data}: MessageEvent) => messageEventsHandlers(data)())
+worker.addEventListener('message', messageEventsHandlers)
 
-const addAuthHeader = function (event: FetchEvent) {
+const addAuthHeader = (event: FetchEvent) => {
 	const destURL = new URL(event.request.url)
 	if (whitelistedOrigins.includes(destURL.origin) && whitelistedPathRegex.test(destURL.pathname)) {
 		const modifiedHeaders = new Headers(event.request.headers)

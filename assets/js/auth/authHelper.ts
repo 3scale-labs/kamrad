@@ -1,42 +1,33 @@
-const authBroadCastChannelName = 'broadcastAuthChannel'
-const checkTokenEvent = 'CHECK_TOKEN'
-const setTokenEvent = 'SET_TOKEN'
-const tokenSetEvent = 'TOKEN_SET'
-const clearTokenEvent = 'CLEAR_TOKEN'
-const tokenClearedEvent = 'TOKEN_CLEARED'
-
-type AuthEventData<T> = {
-	type: string,
-	payload?: T
-}
+import {
+	authBroadCastChannelName,
+	AuthBroadcastEvent,
+	AuthMessageEvent,
+	AuthEventData,
+	isAuthenticated
+} from "./types"
 
 const setAuthToken = (token: string) => (
 	navigator.serviceWorker.controller.postMessage({
-		type: setTokenEvent,
+		type: AuthMessageEvent.SetTokenEvent,
 		token: token
 	})
 )
 
 const clearAuthToken = () => (
-	navigator.serviceWorker.controller.postMessage({type: clearTokenEvent})
+	navigator.serviceWorker.controller.postMessage({type: AuthMessageEvent.ClearTokenEvent})
 )
 
-const broadcastEventHandlers = (data: AuthEventData<boolean>) => ({
-	[tokenSetEvent]: () => window.localStorage.setItem('isAuthenticated', '1'),
-	[tokenClearedEvent]: () => window.localStorage.removeItem('isAuthenticated')
-})[data.type]
+const broadcastEventHandlers = ({data}: MessageEvent<AuthEventData<AuthBroadcastEvent,any>>) => (
+	{
+		[AuthBroadcastEvent.TokenSetEvent]: () => window.localStorage.setItem(isAuthenticated, '1'),
+		[AuthBroadcastEvent.TokenClearedEvent]: () => window.localStorage.removeItem(isAuthenticated)
+	}[data.type]()
+)
 
 const authBroadcastChannel = new BroadcastChannel(authBroadCastChannelName)
-authBroadcastChannel.onmessage = ({data}: MessageEvent) => broadcastEventHandlers(data)()
+authBroadcastChannel.onmessage = broadcastEventHandlers
 
 export {
-	AuthEventData,
-	authBroadCastChannelName,
-	checkTokenEvent,
-	setTokenEvent,
-	tokenSetEvent,
-	clearTokenEvent,
-	tokenClearedEvent,
 	setAuthToken,
 	clearAuthToken
 }
