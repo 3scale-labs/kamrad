@@ -1,25 +1,25 @@
 <footer>
-	<p>&copy; {{ now.Year }} <a href="{{ .Site.BaseURL }}"><b>{{ if .Site.Copyright }}{{ .Site.Copyright }}{{ else }}{{ .Site.Title }}{{ end }}</b></a>.
-		{{- range .Site.Menus.footer }}
-		<a href="{{ .URL }}"><b>{{ .Name }}</b></a>.
-		{{- end }}
-	</p>
+  <p>&copy; {{ now.Year }} <a href="{{ .Site.BaseURL }}"><b>{{ if .Site.Copyright }}{{ .Site.Copyright }}{{ else }}{{ .Site.Title }}{{ end }}</b></a>.
+    {{- range .Site.Menus.footer }}
+    <a href="{{ .URL }}"><b>{{ .Name }}</b></a>.
+    {{- end }}
+  </p>
 </footer>
 
 {{ $serviceWorker := resources.Get "js/auth/authServiceWorker.ts" | babel | js.Build (dict "targetPath" "/authServiceWorker.js") }}
 
 <script>
-	// Register auth service worker
-	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', function() {
-			navigator.serviceWorker.register('{{ $serviceWorker.RelPermalink }}', {scope: '/'}).then(function(_registration) {
-				console.log('ServiceWorker registration successful!')
-			}, function(err) {
-				console.log('ServiceWorker registration failed: ', err);
-			})
-		})
-	}
-	// Redirect to login page if not authenticated
-	if (!/\/login?./.test(window.location.pathname) && !window.localStorage.getItem('isAuthenticated')) window.location = '/login'
+  // Register auth service worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('{{ $serviceWorker.RelPermalink }}', {scope: '/'}).then(function(_registration) {
+        console.log('ServiceWorker registration successful!')
+      }, function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      })
+    })
+  }
+  // Redirect to login page if not authenticated
+  if (!/\/login?./.test(window.location.pathname) && !window.localStorage.getItem('isAuthenticated')) window.location = '/login'
 
 </script>

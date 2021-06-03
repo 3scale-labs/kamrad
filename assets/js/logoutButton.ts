@@ -5,9 +5,9 @@ import LogoutButton from "./components/login/Logout"
 const containerId = 'logoutButton'
 
 document.addEventListener('DOMContentLoaded', function () {
-	const container = document.getElementById(containerId)
-	ReactDOM.render(
-		React.createElement(LogoutButton),
-		container
-	)
+  const container = document.getElementById(containerId)
+  ReactDOM.render(
+    React.createElement(LogoutButton),
+    container
+  )
 })
