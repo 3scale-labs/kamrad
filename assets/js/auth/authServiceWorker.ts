@@ -9,10 +9,11 @@ import {
 // TODO: Get whitelistedOrigins from ENV.
 const whitelistedOrigins: string[] = [
   'http://localhost',
-  'http://localhost:8080'
+  'http://localhost:8080',
+  'http://kamwiel-authorino.127.0.0.1.nip.io:8000'
 ]
 
-const whitelistedPathRegex = /\/api\/[^.]*$/ // anything under /api
+// const whitelistedPathRegex = /\/api\/[^.]*$/ // anything under /api
 
 const worker = self as unknown as ServiceWorker
 
@@ -49,11 +50,18 @@ const messageEventsHandlers = ({data}: MessageEvent<AuthEventData<AuthMessageEve
 worker.addEventListener('message', messageEventsHandlers)
 
 const addAuthHeader = (event: FetchEvent) => {
-  const destURL = new URL(event.request.url)
-  if (whitelistedOrigins.includes(destURL.origin) && whitelistedPathRegex.test(destURL.pathname)) {
-    const modifiedHeaders = new Headers(event.request.headers)
-    if (token) modifiedHeaders.append('Authorization', token)
-    const authReq = new Request(event.request, {headers: modifiedHeaders, mode: 'cors' })
+  const originalReq = event.request
+  const destURL = new URL(originalReq.url)
+
+  if (whitelistedOrigins.includes(destURL.origin) /* && whitelistedPathRegex.test(destURL.pathname) */) {
+    const modifiedHeaders = new Headers(originalReq.headers)
+
+    if (token) modifiedHeaders.append('X-API-KEY', token)
+    const authReq = new Request(originalReq,
+      {
+        headers: modifiedHeaders,
+        mode: 'cors',
+      })
     event.respondWith((async () => fetch(authReq))())
   }
 }

@@ -10,7 +10,7 @@ module.exports = function (api) {
 			}],
 		["@babel/preset-react"]
 	]
-	const plugins = [];
+	const plugins = ["@babel/plugin-transform-runtime"];
 	return {
 		presets,
 		plugins
