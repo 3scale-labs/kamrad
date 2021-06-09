@@ -1,0 +1,6 @@
+<div id="swagger-ui-wrapper" data-url="{{.Get 0}}"></div>
+
+{{ $options := (dict "includePaths" (slice "node_modules")) }}
+{{ $style := resources.Get "css/index.scss" | resources.ToCSS $options }}
+
+<link type="text/css" rel="stylesheet" href="{{ $style.Permalink }}">
