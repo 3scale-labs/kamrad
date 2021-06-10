@@ -9,12 +9,14 @@ import {
 const setAuthToken = (token: string) => (
   navigator.serviceWorker.controller.postMessage({
     type: AuthMessageEvent.SetTokenEvent,
-    token: token
-  })
+    payload: token
+  } as AuthEventData<AuthMessageEvent, string>)
 )
 
 const clearAuthToken = () => (
-  navigator.serviceWorker.controller.postMessage({type: AuthMessageEvent.ClearTokenEvent})
+  navigator.serviceWorker.controller.postMessage({
+    type: AuthMessageEvent.ClearTokenEvent
+  } as AuthEventData<AuthMessageEvent, null>)
 )
 
 const broadcastEventHandlers = ({data}: MessageEvent<AuthEventData<AuthBroadcastEvent,any>>) => (
