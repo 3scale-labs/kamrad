@@ -1,5 +1,5 @@
-<div id="greeter" data-id="{{.Get 0}}"></div>
+<div style="text-align: center" id="pong"></div>
 {{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
 {{ $opts := dict "defines" (dict "process.env.NODE_ENV" $env) }}
-{{ $js := resources.Get "js/greeter.ts" | babel | js.Build $opts }}
+{{ $js := resources.Get "js/pong.ts" | babel | js.Build $opts }}
 <script src="{{ $js.RelPermalink }}"></script>

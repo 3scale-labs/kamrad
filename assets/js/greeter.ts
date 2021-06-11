@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Greeter } from './greeter/Greeter'
+import { Greeter } from './components/greeter/Greeter'
 
 const containerId = 'greeter'
 
