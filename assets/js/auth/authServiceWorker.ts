@@ -35,7 +35,7 @@ const clearToken = () => {
 }
 
 const checkToken = () => {
-  authBroadcastChannel.postMessage({type: AuthMessageEvent.CheckTokenEvent, payload: token.length > 0})
+  authBroadcastChannel.postMessage({type: AuthBroadcastEvent.TokenCheckedEvent, payload: token.length > 0})
   console.log('Token?', token.length > 0)
 }
 

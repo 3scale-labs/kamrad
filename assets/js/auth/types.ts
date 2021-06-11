@@ -3,7 +3,8 @@ const isAuthenticated = 'isAuthenticated'
 
 enum AuthBroadcastEvent {
   TokenSetEvent = 'TOKEN_SET',
-  TokenClearedEvent = 'TOKEN_CLEARED'
+  TokenClearedEvent = 'TOKEN_CLEARED',
+  TokenCheckedEvent = 'TOKEN_CHECKED'
 }
 
 enum AuthMessageEvent {

@@ -22,7 +22,8 @@ const clearAuthToken = () => (
 const broadcastEventHandlers = ({data}: MessageEvent<AuthEventData<AuthBroadcastEvent,any>>) => (
   {
     [AuthBroadcastEvent.TokenSetEvent]: () => window.localStorage.setItem(isAuthenticated, '1'),
-    [AuthBroadcastEvent.TokenClearedEvent]: () => window.localStorage.removeItem(isAuthenticated)
+    [AuthBroadcastEvent.TokenClearedEvent]: () => window.localStorage.removeItem(isAuthenticated),
+    [AuthBroadcastEvent.TokenCheckedEvent]: () => {}
   }[data.type]()
 )
 
