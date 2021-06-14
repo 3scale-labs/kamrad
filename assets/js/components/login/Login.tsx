@@ -45,4 +45,4 @@ const Login: React.FunctionComponent = () => {
   )
 }
 
-export default Login
+export { Login }
