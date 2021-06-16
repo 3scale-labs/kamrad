@@ -1,6 +1,6 @@
 import React from "react"
 import { clearAuthToken } from "../../auth/authHelper"
-import {isAuthenticated} from "../../auth/types"
+import { isAuthenticated } from "../../auth/types"
 
 const LogoutButton: React.FunctionComponent = () => {
   const isLoggedIn = !!window.localStorage.getItem(isAuthenticated)
@@ -13,4 +13,4 @@ const LogoutButton: React.FunctionComponent = () => {
   return isLoggedIn && <a href="#" onClick={logout}>Logout</a>
 }
 
-export default LogoutButton
+export { LogoutButton }

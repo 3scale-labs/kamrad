@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import LogoutButton from "./components/login/Logout"
+import { LogoutButton } from "./components/login/Logout"
 
 const containerId = 'logoutButton'
 
