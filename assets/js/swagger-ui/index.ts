@@ -2,7 +2,6 @@ import SwaggerUI from 'swagger-ui'
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById('swagger-ui-wrapper')
-  
   if (!container) {
     return undefined
   }
@@ -12,4 +11,3 @@ document.addEventListener('DOMContentLoaded', function () {
     url: container.dataset.url
   })
 })
-

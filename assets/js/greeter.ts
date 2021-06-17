@@ -6,9 +6,6 @@ const containerId = 'greeter'
 
 document.addEventListener('DOMContentLoaded', function () {
 	const container = document.getElementById(containerId)
-  if (!container) {
-    return
-  }
 	ReactDOM.render(
 		React.createElement(Greeter, {id: container.dataset.id}),
 		container
