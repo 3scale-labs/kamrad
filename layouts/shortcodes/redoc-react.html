@@ -1,0 +1,9 @@
+<div id="redoc-react" data-url="{{.Get 0}}"></div>
+
+{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
+{{ $externals := slice "path" "url" "fs" "http" }}
+{{ $defines := dict "process.env.NODE_ENV" $env }}
+{{ $opts := dict "defines" $defines "externals" $externals }}
+{{ $js := resources.Get "js/redoc.ts" | babel | js.Build $opts }}
+
+<script src="{{ $js.RelPermalink }}"></script>
