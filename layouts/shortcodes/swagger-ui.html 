@@ -1,0 +1,9 @@
+<div id="swagger-ui-wrapper" data-url="{{.Get 0}}"></div>
+
+{{ $styleOpts := (dict "includePaths" (slice "node_modules")) }}
+{{ $style := resources.Get "css/index.scss" | resources.ToCSS $styleOpts }}
+{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
+{{ $jsOpts := dict "defines" (dict "process.env.NODE_ENV" $env) }}
+{{ $js := resources.Get "js/swagger-ui/index.ts" | js.Build $jsOpts }}
+<link type="text/css" rel="stylesheet" href="{{ $style.Permalink }}">
+<script src="{{ $js.RelPermalink }}"></script>
