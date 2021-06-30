@@ -13,7 +13,8 @@
       "es2018",
       "ESNext"
     ],
-    "pretty": true
+    "pretty": true,
+    "sourceMap": true
   },
   "include": [
     "./assets/**/*"

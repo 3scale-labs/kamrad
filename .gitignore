@@ -50,3 +50,4 @@ logs
 **/*.back.*
 
 node_modules
+static/assets
