@@ -1,0 +1,11 @@
+<div id="apiDocs" data-url="{{.Get 0}}"></div>
+{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
+{{ $defines := dict "process.env.NODE_ENV" $env "global" `window` }}
+{{ $inject := slice "js/shims/buffer.js" }}
+{{ $opts := dict "inject" $inject "defines" $defines }}
+{{ $js := resources.Get "js/apiDocs.ts" | babel | js.Build $opts }}
+<script src="{{ $js.RelPermalink }}"></script>
+
+{{ $styleOpts := (dict "includePaths" (slice "node_modules")) }}
+{{ $style := resources.Get "scss/api-docs/main.scss" | resources.ToCSS $styleOpts }}
+<link type="text/css" rel="stylesheet" href="{{ $style.Permalink }}">
