@@ -2,7 +2,7 @@
   "name": "kamrad",
   "version": "1.0.0",
   "description": "Kuadrant's developer portal",
-  "main": "src/index.ts",
+  "main": "src/js/index.ts",
   "scripts": {
     "dev": "concurrently \"npm run lint -- --watch\" \"hugo server\"",
     "lint": "tsc --noEmit",
