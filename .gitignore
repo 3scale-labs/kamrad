@@ -4,6 +4,7 @@
 /resources/_gen/
 hugo_stats.json
 /static/
+/data/manifest.json
 
 # Executable may be added to repository
 hugo.exe
