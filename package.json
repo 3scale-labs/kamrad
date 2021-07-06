@@ -1,10 +1,16 @@
 {
   "name": "kamrad",
   "version": "1.0.0",
-  "description": "Kuadrant's developer portal",
+  "description": "Kuadrant developer portal",
   "main": "src/js/index.ts",
   "scripts": {
-    "dev": "concurrently \"npm run lint -- --watch\" \"hugo server\"",
+    "start": "concurrently npm:start:*",
+    "start:hugo": "hugo server -v -D --disableFastRender",
+    "start:webpack": "webpack serve --config webpack.dev.js --hot",
+    "build": "npm run build:webpack && npm run build:hugo",
+    "build:hugo": "hugo -v",
+    "build:hugo:preview": "npm run build:hugo -- -D -F",
+    "build:webpack": "NODE_ENV=production webpack --config webpack.prod.js",
     "lint": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
