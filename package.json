@@ -4,8 +4,8 @@
   "description": "Kuadrant's developer portal",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "concurrently \"npm run lint\" \"hugo server\"",
-    "lint": "tsc --watch  --noEmit",
+    "dev": "concurrently \"npm run lint -- --watch\" \"hugo server\"",
+    "lint": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
