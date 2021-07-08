@@ -1,0 +1,9 @@
+<div id="api-docs" data-url="{{.Get 0}}"></div>
+
+{{ $styleOpts := (dict "includePaths" (slice "node_modules")) }}
+{{ $style := resources.Get "scss/api-docs/main.scss" | resources.ToCSS $styleOpts }}
+{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
+{{ $jsOpts := dict "defines" (dict "process.env.NODE_ENV" $env) }}
+{{ $js := resources.Get "js/apiDocs.ts" | js.Build $jsOpts }}
+<link type="text/css" rel="stylesheet" href="{{ $style.Permalink }}">
+<script src="{{ $js.RelPermalink }}"></script>
