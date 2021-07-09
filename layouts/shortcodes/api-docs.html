@@ -1,4 +1,8 @@
-<div id="api-docs" data-url="{{.Get 0}}"></div>
+{{ if .IsNamedParams }}
+  <div class="api-docs" id="{{ .Get "id" }}" data-url="{{.Get "url"}}"></div>
+{{ else }}
+  <div class="api-docs" id="api-docs" data-url="{{.Get 0}}"></div>
+{{ end }}
 
 {{ $styleOpts := (dict "includePaths" (slice "node_modules")) }}
 {{ $style := resources.Get "scss/api-docs/main.scss" | resources.ToCSS $styleOpts }}
