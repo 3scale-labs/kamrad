@@ -13,10 +13,4 @@
   </nav>
   </p>
   {{ end }}
-
-  {{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
-  {{ $opts := dict "defines" (dict "process.env.NODE_ENV" $env) }}
-  {{ $js := resources.Get "js/logoutButton.ts" | babel | js.Build $opts }}
-  <script src="{{ $js.RelPermalink }}"></script>
-
 </header>
