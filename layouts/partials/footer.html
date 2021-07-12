@@ -23,3 +23,5 @@
   if (!/\/login?./.test(window.location.pathname) && !window.localStorage.getItem('isAuthenticated')) window.location = '/login'
 
 </script>
+
+{{ partial "scripts.html" . }}

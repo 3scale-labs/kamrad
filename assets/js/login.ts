@@ -6,7 +6,7 @@ const containerId = 'loginForm'
 
 document.addEventListener('DOMContentLoaded', function () {
   const container = document.getElementById(containerId)
-  ReactDOM.render(
+  container && ReactDOM.render(
     React.createElement(Login),
     container
   )
