@@ -1,13 +1,8 @@
-import SwaggerUI from 'swagger-ui'
+import { renderApiDocs } from "./api-docs/renderApiDocs"
 
 document.addEventListener('DOMContentLoaded', function () {
-  const container = document.getElementById('api-docs')
-  if (!container) {
-    return undefined
-  }
-
-  SwaggerUI({
-    dom_id: '#api-docs',
-    url: container.dataset.url
-  })
+  Array.from(document.getElementsByClassName('api-docs'))
+    .forEach((node: HTMLElement) =>
+      renderApiDocs(node.id, node.dataset.url)
+    )
 })
