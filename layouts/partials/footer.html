@@ -26,5 +26,3 @@
 
 
 {{ partial "scripts.html" . }}
-
-<script type="text/javascript" src="{{$.Site.BaseURL}}/{{ if .Site.IsServer }}js/app.bundle.js{{ else }}{{ index .Site.Data.manifest "app.js" | relURL }}{{ end }}"></script>

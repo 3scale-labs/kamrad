@@ -16,3 +16,7 @@
 {{ $jsBundle := slice $login $logoutButton | resources.Concat "js/bundle.js" }}
 
 <script src="{{ $jsBundle.RelPermalink }}"></script>
+
+{{ $devServer := "http://localhost:1314"}}
+
+<script type="text/javascript" src="{{ if .Site.IsServer }}{{$devServer}}/js/app.bundle.js{{ else }}{{$.Site.BaseURL}}/{{ index .Site.Data.manifest "app.js" | relURL }}{{ end }}"></script>
