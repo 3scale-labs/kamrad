@@ -1,18 +1,27 @@
 const { merge } = require('webpack-merge')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require("terser-webpack-plugin")
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const common = require('./webpack.common.js')
 
 module.exports = merge(common('production'), {
   optimization: {
+    minimize: true,
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
+      new TerserPlugin({
+        parallel: true
       }),
-      new OptimizeCSSAssetsPlugin({})
+      new CssMinimizerPlugin({
+        parallel: true,
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true }
+            }
+          ]
+        }
+      })
     ]
   }
 })

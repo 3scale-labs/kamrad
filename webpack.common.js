@@ -1,5 +1,6 @@
 const path = require('path')
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 
@@ -10,12 +11,17 @@ module.exports = mode => {
     devtool: isProduction ? 'source-map' : 'inline-source-map',
 
     entry: {
-      app: path.join(__dirname, 'src', 'js', 'index.ts')
+      bundle: [
+        path.join(__dirname, 'src', 'js', 'packs', 'login.ts'),
+        path.join(__dirname, 'src', 'js', 'packs', 'logoutButton.ts')
+      ],
+      apiDocs: path.join(__dirname, 'src', 'js', 'packs', 'apiDocs.ts'),
+      pong: path.join(__dirname, 'src', 'js', 'packs', 'pong.ts'),
     },
 
     output: {
       path: path.join(__dirname, 'static'),
-      filename: `js/[name]${isProduction ? '-[hash:5]' : ''}.bundle.js`,
+      filename: `js/[name]${isProduction ? '-[fullhash:5]' : ''}.js`,
       publicPath: '/'
     },
 
@@ -43,11 +49,16 @@ module.exports = mode => {
           test: /\.((png)|(eot)|(woff)|(woff2)|(ttf)|(svg)|(gif))(\?v=\d+\.\d+\.\d+)?$/,
           use: ['file-loader?name=/[hash].[ext]']
         },
-        {test: /\.json$/, loader: 'json-loader'},
+        {
+          test: /\.json$/, loader: 'json-loader'
+        },
         {
           test: /\.(sa|sc|c)ss$/,
-          exclude: /node_modules/,
-          use: ['style-loader', MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"]
+          use: [
+            !isProduction ? "style-loader" : MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader",
+          ]
         }
       ]
     },
@@ -64,10 +75,8 @@ module.exports = mode => {
     },
 
     plugins: [
-      new MiniCssExtractPlugin({
-        filename: `css/${isProduction ? '[hash].' : ''}.css`,
-        chunkFilename: `css/${isProduction ? '[id].' : ''}.css`
-      }),
+      new CssMinimizerPlugin(),
+      new MiniCssExtractPlugin(),
       new WebpackManifestPlugin({
         fileName: '../data/manifest.json'
       })
