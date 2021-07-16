@@ -1,22 +1,30 @@
-{{ $env := cond .Site.IsServer "\"development\"" "\"production\"" }}
-{{ $opts := dict "defines" (dict "process.env.NODE_ENV" $env) }}
-
-{{ if .HasShortcode "api-docs" }}
-  {{ $apiDocs := resources.Get "js/apiDocs.ts" | babel | js.Build $opts }}
-  <script src="{{ $apiDocs.RelPermalink }}"></script>
-{{end}}
-{{ if .HasShortcode "pong" }}
-    {{ $pong := resources.Get "js/pong.ts" | babel | js.Build $opts }}
-    <script src="{{ $pong.RelPermalink }}"></script>
-{{end}}
-
-{{ $login := resources.Get "js/login.ts" | babel | js.Build $opts }}
-{{ $logoutButton := resources.Get "js/logoutButton.ts" | babel | js.Build $opts }}
-
-{{ $jsBundle := slice $login $logoutButton | resources.Concat "js/bundle.js" }}
-
-<script src="{{ $jsBundle.RelPermalink }}"></script>
-
 {{ $devServer := "http://localhost:1314"}}
 
-<script type="text/javascript" src="{{ if .Site.IsServer }}{{$devServer}}/js/app.bundle.js{{ else }}{{$.Site.BaseURL}}/{{ index .Site.Data.manifest "app.js" | relURL }}{{ end }}"></script>
+<script type="text/javascript" src="{{ if .Site.IsServer }}{{$devServer}}/js/bundle.js{{ else }}{{.Site.BaseURL}}/{{ index .Site.Data.manifest "bundle.js" | relURL }}{{ end }}"></script>
+
+{{ $shortcodeScripts := dict "pong" "pong" "api-docs" "apiDocs" }}
+
+{{ range $shortcode, $script := $shortcodeScripts }}
+  {{ if $.HasShortcode $shortcode }}
+    <script type="text/javascript" src="{{ if $.Site.IsServer }}{{$devServer}}/js/{{$script}}.js{{ else }}{{$.Site.BaseURL}}/{{ index $.Site.Data.manifest (printf "%s.js" $script) | relURL }}{{ end }}"></script>
+  {{end}}
+{{ end }}
+
+{{/* authServiceWorker is the only script build with ESBuild, since it's needed to be served from the same domain that the rest*/}}
+{{ $serviceWorker := resources.Get "js/auth/authServiceWorker.ts" | babel | js.Build (dict "targetPath" "/authServiceWorker.js") }}
+
+<script>
+  // Register auth service worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('{{ $serviceWorker.RelPermalink }}', {scope: '/', origins: ['*']}).then(function(_registration) {
+        console.log('ServiceWorker registration successful!')
+      }, function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+      })
+    })
+  }
+  // Redirect to login page if not authenticated
+  if (!/\/login?./.test(window.location.pathname) && !window.localStorage.getItem('isAuthenticated')) window.location = '/login'
+
+</script>
