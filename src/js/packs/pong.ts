@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { Pong } from './components/pong/Pong'
+import { Pong } from '../components/pong/Pong'
 
 const containerId = 'pong'
 
