@@ -1,10 +1,10 @@
-import { FetchEvent } from "../types/service-worker"
+import { FetchEvent } from './types/service-worker'
 import {
   AuthMessageEvent,
   AuthBroadcastEvent,
   AuthEventData,
   authBroadCastChannelName
-} from "./types"
+} from './types'
 
 // TODO: Get whitelistedOrigins from ENV.
 const whitelistedOrigins: string[] = [
