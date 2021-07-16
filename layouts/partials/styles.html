@@ -1,5 +1,0 @@
-{{ $styleOpts := (dict "includePaths" (slice "node_modules")) }}
-{{ if .HasShortcode "api-docs" }}
-    {{ $apiDocsCss := resources.Get "scss/api-docs/main.scss" | resources.ToCSS $styleOpts | resources.Minify }}
-    <link type="text/css" rel="stylesheet" href="{{ $apiDocsCss.Permalink }}">
-{{end}}
