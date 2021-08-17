@@ -5,22 +5,22 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <style type=text/css>body{font-family:monospace}</style>
 <title>Tags</title>
-<link rel=stylesheet href=/css/style.css>
-<link rel=alternate type=application/rss+xml href=/tags/index.xml title=Kamrad>
+<link rel=stylesheet href=/kamrad/css/style.css>
+<link rel=alternate type=application/rss+xml href=/kamrad/tags/index.xml title=Kamrad>
 </head>
 <body>
 <header>
 ============<br>
-== <a href=http://example.org/>Kamrad</a> ==<br>
+== <a href=https://3scale-labs.github.io/kamrad>Kamrad</a> ==<br>
 ============
 <div style=float:right>Kamrad, the Kuadrant's developer portal <span id=logoutButton></span></div><br>
 <p>
 <nav>
 <a href=/><b>Start</b></a>.
-<a href=/posts/><b>Posts</b></a>.
-<a href=/docs/><b>Docs</b></a>.
-<a href=/about><b>About</b></a>.
-<a href=/pong><b>Pong!</b></a>.
+<a href=/kamrad/kamrad/posts/><b>Posts</b></a>.
+<a href=/kamrad/kamrad/docs/><b>Docs</b></a>.
+<a href=/kamrad/kamrad/about><b>About</b></a>.
+<a href=/kamrad/kamrad/pong><b>Pong!</b></a>.
 </nav>
 </p>
 </header>
@@ -35,11 +35,11 @@
 </div>
 </main>
 <footer>
-<p>&copy; 2021 <a href=http://example.org/><b>Kamrad</b></a>.
+<p>&copy; 2021 <a href=https://3scale-labs.github.io/kamrad><b>Kamrad</b></a>.
 <a href=https://github.com/3scale-labs/kamrad><b>Github</b></a>.
 </p>
 </footer>
-<script>'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('/authServiceWorker.js',{scope:'/',origins:['*']}).then(function(a){console.log('ServiceWorker registration successful!')},function(a){console.log('ServiceWorker registration failed: ',a)})}),!/\/login?./.test(window.location.pathname)&&!window.localStorage.getItem('isAuthenticated')&&(window.location='/login')</script>
-<script src=/js/bundle.js></script>
+<script>'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('/kamrad/authServiceWorker.js',{scope:'/',origins:['*']}).then(function(a){console.log('ServiceWorker registration successful!')},function(a){console.log('ServiceWorker registration failed: ',a)})}),!/\/login?./.test(window.location.pathname)&&!window.localStorage.getItem('isAuthenticated')&&(window.location='https://3scale-labs.github.io/kamrad/login')</script>
+<script src=/kamrad/js/bundle.js></script>
 </body>
 </html>
