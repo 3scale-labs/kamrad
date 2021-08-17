@@ -20,7 +20,7 @@
     })
   }
   // Redirect to login page if not authenticated
-  if (!/\/login?./.test(window.location.pathname) && !window.localStorage.getItem('isAuthenticated')) window.location = '/login'
+  if (!/\/login?./.test(window.location.pathname) && !window.localStorage.getItem('isAuthenticated')) window.location = '{{ $.Site.BaseURL }}/login'
 
 </script>
 
