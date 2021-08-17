@@ -53,7 +53,7 @@
 <a href=https://github.com/3scale-labs/kamrad><b>Github</b></a>.
 </p>
 </footer>
-<script>'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('/kamrad/authServiceWorker.js',{scope:'/',origins:['*']}).then(function(a){console.log('ServiceWorker registration successful!')},function(a){console.log('ServiceWorker registration failed: ',a)})}),!/\/login?./.test(window.location.pathname)&&!window.localStorage.getItem('isAuthenticated')&&(window.location='https://3scale-labs.github.io/kamrad/login')</script>
+<script>'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('/kamrad/authServiceWorker.js',{scope:'/kamrad/',origins:['*']}).then(function(a){console.log('ServiceWorker registration successful!')},function(a){console.log('ServiceWorker registration failed: ',a)})}),!/\/login?./.test(window.location.pathname)&&!window.localStorage.getItem('isAuthenticated')&&(window.location='https://3scale-labs.github.io/kamrad/login')</script>
 <script src=/kamrad/js/apiDocs.js></script>
 <script src=/kamrad/js/bundle.js></script>
 </body>
