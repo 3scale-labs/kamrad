@@ -5,14 +5,14 @@
     {{- end }}
   </p>
 </footer>
-
+{{ $serviceWorkerScope := printf "/%v/" (path.Base .Site.BaseURL) }}
 {{ $serviceWorker := resources.Get "js/auth/authServiceWorker.ts" | babel | js.Build (dict "targetPath" "/authServiceWorker.js") }}
 
 <script>
   // Register auth service worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('{{ $serviceWorker.RelPermalink }}', {scope: '/', origins: ['*']}).then(function(_registration) {
+      navigator.serviceWorker.register('{{ $serviceWorker.RelPermalink }}', {scope: '{{ $serviceWorkerScope }}', origins: ['*']}).then(function(_registration) {
         console.log('ServiceWorker registration successful!')
       }, function(err) {
         console.log('ServiceWorker registration failed: ', err);
