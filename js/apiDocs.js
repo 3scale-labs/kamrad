@@ -37848,14 +37848,20 @@
   __export(renderApiDocs_exports, {
     renderApiDocs: () => renderApiDocs
   });
-  var import_swagger_ui, renderApiDocs;
+  var import_swagger_ui, urlExpression, urlRegex, renderApiDocs;
   var init_renderApiDocs = __esm({
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/api-docs/renderApiDocs.ts"() {
       import_swagger_ui = __toModule(require_swagger_ui_es_bundle());
-      renderApiDocs = (containerId, url) => (0, import_swagger_ui.default)({
-        dom_id: `#${containerId}`,
-        url
-      });
+      urlExpression = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+      urlRegex = new RegExp(urlExpression);
+      renderApiDocs = (containerId, spec) => {
+        const specSource = !!spec.match(urlRegex) ? "url" : "spec";
+        const swaggerOptions = {
+          dom_id: `#${containerId}`,
+          [specSource]: JSON.parse(spec)
+        };
+        (0, import_swagger_ui.default)(swaggerOptions);
+      };
     }
   });
 
@@ -37864,7 +37870,7 @@
   var _renderApiDocs = (init_renderApiDocs(), renderApiDocs_exports);
   document.addEventListener("DOMContentLoaded", function() {
     Array.from(document.getElementsByClassName("api-docs")).forEach(function(node) {
-      return (0, _renderApiDocs.renderApiDocs)(node.id, node.dataset.url);
+      return (0, _renderApiDocs.renderApiDocs)(node.id, node.dataset.spec);
     });
   });
 })();
