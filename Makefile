@@ -7,9 +7,10 @@ help: ## Display this help.
 API_LIST ?= $(shell cat data/apis/list.json)
 generate_api_pages: ## Generate api pages. If API_LIST is not present, it will consume `data/apis/list.json`
 	@{ \
+	set -e; \
 	echo "***************************************************************************"; \
 	echo "Generating API docu pages..."; \
-	cd data/apis; \
+	mkdir -p data/apis && cd data/apis; \
 	echo '$(API_LIST)' | jq -cr '.[] | .name, .spec' | awk NF | awk 'NR%2{name=$$0;filename=name".md"; next}{print "---" >> filename; print "title: "name" API" > filename; print "---\n" > filename; print "{{< api-docs \`" $$0 "\` >}}" > filename; close(filename)}'; \
 	echo "Moving generated pages to 'content/docs'"; \
 	echo "WARNING: It will overwrite any destination file with the same name"; \
