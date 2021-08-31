@@ -37855,10 +37855,10 @@
       urlExpression = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
       urlRegex = new RegExp(urlExpression);
       renderApiDocs = (containerId, spec) => {
-        const specSource = !!spec.match(urlRegex) ? "url" : "spec";
+        const isSpecUrl = !!spec.match(urlRegex);
         const swaggerOptions = {
           dom_id: `#${containerId}`,
-          [specSource]: JSON.parse(spec)
+          [isSpecUrl ? "url" : "spec"]: isSpecUrl ? spec : JSON.parse(spec)
         };
         (0, import_swagger_ui.default)(swaggerOptions);
       };
