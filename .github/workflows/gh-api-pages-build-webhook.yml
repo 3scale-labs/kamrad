@@ -40,8 +40,16 @@ jobs:
       - name: Install JS dependencies
         run: npm ci
 
+      - name: Fetch API List
+        id: fetchAPIList
+        uses: fjogeleit/http-request-action@master
+        with:
+          method: 'GET'
+          url: ${{ secrets.KAMWIEL_URL }}/apis
+          customHeaders: '{"X-API-KEY": "${{ secrets.KAMWIEL_API_KEY }}"}'
+
       - name: Generate API pages
-        run: make generate_api_pages API_LIST='${{ github.event.client_payload.data }}'
+        run: make generate_api_pages API_LIST='${{ steps.fetchAPIList.outputs.response }}'
 
       - name: Build static site
         run: hugo --minify
