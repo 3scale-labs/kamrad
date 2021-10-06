@@ -60,3 +60,13 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+
+      - name: Mark deploy with new hash
+        uses: hmanzur/actions-set-secret@v2.0.0
+        with:
+          name: 'KAMWIEL_API_HASH'
+          value: ${{ github.event.client_payload.hash }}
+          repository: '3scale-labs/kamrad'
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          org: true
+          visibility: 'all'
