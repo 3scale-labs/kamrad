@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy_new_apis:
     if: ${{ github.event.client_payload.hash != secrets.KAMWIEL_API_HASH }}
     runs-on: ubuntu-20.04
     steps:
