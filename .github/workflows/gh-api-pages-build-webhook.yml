@@ -7,7 +7,8 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy_new_apis:
+    if: ${{ github.event.client_payload.hash != secrets.KAMWIEL_API_HASH }}
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -39,8 +40,16 @@ jobs:
       - name: Install JS dependencies
         run: npm ci
 
+      - name: Fetch API List
+        id: fetchAPIList
+        uses: fjogeleit/http-request-action@master
+        with:
+          method: 'GET'
+          url: ${{ secrets.KAMWIEL_URL }}/apis
+          customHeaders: '{"X-API-KEY": "${{ secrets.KAMWIEL_API_KEY }}"}'
+
       - name: Generate API pages
-        run: make generate_api_pages API_LIST='${{ github.event.client_payload.data }}'
+        run: make generate_api_pages API_LIST='${{ steps.fetchAPIList.outputs.response }}'
 
       - name: Build static site
         run: hugo --minify
@@ -51,3 +60,13 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+
+      - name: Mark deploy with new hash
+        uses: hmanzur/actions-set-secret@v2.0.0
+        with:
+          name: 'KAMWIEL_API_HASH'
+          value: ${{ github.event.client_payload.hash }}
+          repository: '3scale-labs/kamrad'
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          org: true
+          visibility: 'all'
