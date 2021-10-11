@@ -7,13 +7,24 @@ on:
       - main
 
 jobs:
+  check-api-hash:
+    runs-on: ubuntu-20.04
+    outputs:
+      needs-build: ${{ steps.check.outputs.flag }}
+    steps:
+      - id: check
+        if: secrets.KAMWIEL_API_HASH != github.event.client_payload.hash
+        run: echo "::set-output name=flag::true"
+
   deploy_new_apis:
-    if: ${{ github.event.client_payload.hash != secrets.KAMWIEL_API_HASH }}
+    needs: check-api-hash
+    if: needs.check-api-hash.outputs.needs-build == 'true'
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           submodules: true
           fetch-depth: 0
           ref: ${{ github.event.client_payload.ref }}
