@@ -83,5 +83,3 @@ jobs:
           value: ${{ github.event.client_payload.hash }}
           repository: '3scale-labs/kamrad'
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          org: true
-          visibility: 'all'
