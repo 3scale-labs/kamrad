@@ -12,9 +12,13 @@ jobs:
     outputs:
       needs-build: ${{ steps.check.outputs.flag }}
     steps:
-      - id: check
-        if: secrets.KAMWIEL_API_HASH != github.event.client_payload.hash
-        run: echo "::set-output name=flag::true"
+      - name: Checking Kamwiel hash
+        id: check
+        shell: bash
+        env:
+          STORED_HASH: ${{ secrets.KAMWIEL_API_HASH }}
+          WEBHOOK_HASH: ${{ github.event.client_payload.hash }}
+        run: if [ $STORED_HASH != $WEBHOOK_HASH ]; then echo "::set-output name=flag::true"; fi
 
   deploy_new_apis:
     needs: check-api-hash
