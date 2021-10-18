@@ -76,6 +76,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 
+  update_api_hash:
+    needs: deploy_new_apis
+    runs-on: ubuntu-20.04
+    steps:
       - name: Mark deploy with new hash
         uses: hmanzur/actions-set-secret@v2.0.0
         with:
