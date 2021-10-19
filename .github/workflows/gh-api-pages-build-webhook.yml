@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  check-api-hash:
+  check_api_hash:
     runs-on: ubuntu-20.04
     outputs:
       needs-build: ${{ steps.check.outputs.flag }}
@@ -21,8 +21,8 @@ jobs:
         run: if [ $STORED_HASH != $WEBHOOK_HASH ]; then echo "::set-output name=flag::true"; fi
 
   deploy_new_apis:
-    needs: check-api-hash
-    if: needs.check-api-hash.outputs.needs-build == 'true'
+    needs: check_api_hash
+    if: needs.check_api_hash.outputs.needs-build == 'true'
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -76,6 +76,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 
+  update_api_hash:
+    needs: deploy_new_apis
+    runs-on: ubuntu-20.04
+    steps:
       - name: Mark deploy with new hash
         uses: hmanzur/actions-set-secret@v2.0.0
         with:
