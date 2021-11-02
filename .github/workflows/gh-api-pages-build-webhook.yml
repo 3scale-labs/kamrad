@@ -87,3 +87,15 @@ jobs:
           value: ${{ github.event.client_payload.hash }}
           repository: '3scale-labs/kamrad'
           token: ${{ secrets.KAMRAD_TOKEN }}
+
+  sync_with_kamwiel:
+    needs: update_api_hash
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Communicate Kamwiel the deploy was successful
+        id: updateKamwielState
+        uses: fjogeleit/http-request-action@master
+        with:
+          method: 'PUT'
+          url: ${{ secrets.KAMWIEL_URL }}/state/${{ github.event.client_payload.hash }}
+          customHeaders: '{"X-API-KEY": "${{ secrets.KAMWIEL_API_KEY }}"}'
