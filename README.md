@@ -20,3 +20,52 @@ Kamrad also offers a way of producing a fully static site, where it generates pa
 will consume [Kuadrant](https://github.com/Kuadrant) exposed by [Kamwiel](https://github.com/3scale-labs/kamwiel)
 
 ![Kamrad static content](docs/images/kamrad-arch-static.png?raw=true)
+
+## Usage
+Given this is just a builder, one will need to have [Kamwiel](https://github.com/3scale-labs/kamwiel) running within a
+[Kuadrant](https://github.com/Kuadrant) cluster.
+
+### Locally
+You'll need to have the following installed locally:
+
+* [Go](https://golang.org/doc/install)
+* [Node](https://nodejs.org/en/)
+* [Hugo](https://gohugo.io/getting-started/quick-start/)
+
+1. Clone this repo with submodules and `cd` into it
+   ```bash
+   git clone --recurse-submodules git@github.com:3scale-labs/kamrad.git && cd kamrad`
+   ```
+2. Install Node dependencies
+    ```bash
+    npm install
+    ```
+3. Run Kamrad locally
+    ```bash
+    make run
+    ```
+4. Profit! Open in your favourite browser -> [Kamrad](http://localhost:1313/kamrad/)
+
+### Github pages
+Right now, at this PoC stage, the only way to give it a try is forking this repo, adding some configuration as secrets
+described below and trigger one of the workflows. You'll also need to set up [GH pages](https://guides.github.com/features/pages/)
+
+#### Config as secrets
+* `KAMRAD_TOKEN` A token with repo access for the current GH repository
+* `KAMWIEL_API_HASH` Could be blank, later on will be populated with Kamwiel state
+* `KAMWIEL_URL` The URL where Kamwiel is hosted
+* `KAMWIEL_API_KEY` The API key issued by Kamwiel to use its services
+
+#### Workflows available
+* `api-list` A `repository_dispatch` workflow that will trigger the build and deploy, among other checks,
+  of the developer portal to the Github pages branch. The event, that eventually will come from Kamwiel, it's a `POST`
+  to `https://api.github.com/repos/user/repo/dispatches` looks like
+  ```json
+  {
+    "event_type": "api-list",
+    "client_payload": {
+        "hash": "THIS_HASH_REPRESENTS_KAMWIEL_API_LIST_STATE"
+    }
+  }
+  ```
+* `deploy` Is a workflow run on any `push` to the default branch. It will also build and deploy to GH pages
