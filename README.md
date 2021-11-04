@@ -69,3 +69,82 @@ described below and trigger one of the workflows. You'll also need to set up [GH
   }
   ```
 * `deploy` Is a workflow run on any `push` to the default branch. It will also build and deploy to GH pages
+
+## Features
+This feature list will be evolving with time. Right now it's PoC which might drastically change in the future.
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">Feature</th>
+      <th>Description</th>
+      <th>Stage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="6">Content Management</td>
+      <td>Markdown</td>
+      <td></td>
+      <td>Ready</td>
+    </tr>
+    <tr>
+      <td>HTML</td>
+      <td></td>
+      <td>Ready</td>
+    </tr>
+    <tr>
+      <td>Images/Videos</td>
+      <td></td>
+      <td>Ready</td>
+    </tr>
+    <tr>
+      <td>Server side content</td>
+      <td>Through Hugo shortcodes. At the moment some Kuadrant resources only.</td>
+      <td>Ready</td>
+    </tr>
+    <tr>
+      <td>AsciiDoc</td>
+      <td>Would include AsciiDoctor and another build process</td>
+      <td>In analysis</td>
+    </tr>
+    <tr>
+      <td>OAS</td>
+      <td>Done with a `shortcode` manually or generation script. Based on Swagger</td>
+      <td>Ready</td>
+    </tr>
+    <tr>
+      <td rowspan="2">Authentication</td>
+      <td>API Key</td>
+      <td></td>
+      <td>Ready</td>
+    </tr>
+    <tr>
+      <td>SSO</td>
+      <td></td>
+      <td>Planned</td>
+    </tr>
+    <tr>
+      <td rowspan="1">User MGMT</td>
+      <td></td>
+      <td></td>
+      <td>Planned</td>
+    </tr>
+    <tr>
+      <td rowspan="3">Hosting</td>
+      <td>Github Pages</td>
+      <td></td>
+      <td>Ready</td>
+    </tr>
+    <tr>
+      <td>OpenShift</td>
+      <td></td>
+      <td>Planned</td>
+    </tr>
+    <tr>
+      <td>Hosting Provider</td>
+      <td></td>
+      <td>Planned</td>
+    </tr>
+  </tbody>
+</table>
