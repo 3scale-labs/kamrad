@@ -22,3 +22,6 @@ generate_api_pages: ## Generate api pages. If API_LIST is not present, it will c
 build: ## Builds the static site
 	@echo "Building site"
 	@hugo --minify
+
+run: ## Run Kamrad server for development purposes
+	hugo server -v -D --disableFastRender
