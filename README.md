@@ -83,7 +83,7 @@ This feature list will be evolving with time. Right now it's PoC which might dra
   </thead>
   <tbody>
     <tr>
-      <td rowspan="6">Content Management</td>
+      <td rowspan="7">Content Management</td>
       <td>Markdown</td>
       <td></td>
       <td>Ready</td>
@@ -112,6 +112,11 @@ This feature list will be evolving with time. Right now it's PoC which might dra
       <td>OAS</td>
       <td>Done with a `shortcode` manually or generation script. Based on Swagger</td>
       <td>Ready</td>
+    </tr>
+    <tr>
+      <td>AsyncAPI</td>
+      <td></td>
+      <td>Planned</td>
     </tr>
     <tr>
       <td rowspan="2">Authentication</td>
