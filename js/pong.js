@@ -7108,15 +7108,14 @@
   var init_Pong = __esm({
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/components/pong/Pong.tsx"() {
       import_react = __toModule(require_react());
-      Pong = () => {
+      Pong = ({ kamwielUrl }) => {
         const [pong, setPong] = (0, import_react.useState)("");
         const [loading, setLoading] = (0, import_react.useState)(true);
         async function ping() {
-          const response = await fetch("http://kamwiel-authorino.127.0.0.1.nip.io:8000/ping");
+          const response = await fetch(`${kamwielUrl}/ping`);
           if (!response.ok)
             throw response;
-          const data = await response.text();
-          return data;
+          return await response.text();
         }
         const handleOnClick = (event) => {
           event.preventDefault();
@@ -7180,7 +7179,7 @@
   document.addEventListener("DOMContentLoaded", function() {
     var container = document.getElementById(containerId);
     ReactDOM.render(/* @__PURE__ */ React2.createElement(_Pong.Pong, {
-      id: container.dataset.id
+      kamwielUrl: container.dataset.kamwielUrl
     }), container);
   });
 })();
