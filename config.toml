@@ -1,4 +1,4 @@
-baseURL = "https://3scale-labs.github.io/kamrad" # Replace with the URL where yiour Dev Portal will be deployed
+baseURL = "https://3scale-labs.github.io/kamrad" # Replace with the URL where your Dev Portal will be deployed
 languageCode = "en-us"
 
 # Theme
@@ -8,6 +8,7 @@ theme = "smol"
 [params]
 subtitle = "Kamrad, the Kuadrant's developer portal"
 dateFmt = "11.05.2021 15:51"
+kamwielURL = "https://9825-45-152-183-29.ngrok.io" # Replace with the URL of your Kuadrant cluster
 
 ## Header
 [menu]
