@@ -7,7 +7,9 @@ const containerId = 'pong'
 document.addEventListener('DOMContentLoaded', function () {
 	const container = document.getElementById(containerId)
 	ReactDOM.render(
-		React.createElement(Pong, {id: container.dataset.id}),
+		React.createElement(Pong, {
+			kamwielUrl: container.dataset.kamwielUrl
+		}),
 		container
 	)
 })

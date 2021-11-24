@@ -1,15 +1,16 @@
 import React, { useState, SyntheticEvent, ChangeEvent } from 'react'
 
-export const Pong = () => {
+interface IPong {
+  kamwielUrl: string
+}
+export const Pong: React.FunctionComponent<IPong> = ({kamwielUrl}) => {
   const [pong, setPong] = useState('')
   const [loading, setLoading] = useState(true)
 
   async function ping() {
-    // TODO: get host from configuration
-    const response = await fetch('http://kamwiel-authorino.127.0.0.1.nip.io:8000/ping')
+    const response = await fetch(`${kamwielUrl}/ping`)
     if (!response.ok) throw response
-    const data = await response.text()
-    return data
+    return await response.text()
   }
 
   const handleOnClick = (event: SyntheticEvent) => {
