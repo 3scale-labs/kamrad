@@ -7,7 +7,8 @@ const LogoutButton: React.FunctionComponent = () => {
 
   const logout = () => {
     clearAuthToken()
-    window.location.assign('/login')
+    // TODO: Get from $.Site.BaseURL
+    window.location.assign('/kamrad/login')
   }
 
   return isLoggedIn && <a href="#" onClick={logout}>Logout</a>
