@@ -5,7 +5,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <style type=text/css>body{font-family:monospace}</style>
 <link type=text/css rel=stylesheet href=https://3scale-labs.github.io/kamrad/scss/api-docs/main.min.css>
-<title>bookstore API</title>
+<title>BookStore API</title>
 <link rel=stylesheet href=/kamrad/css/style.css>
 </head>
 <body>
@@ -26,10 +26,10 @@
 </header>
 <main>
 <article>
-<h1>bookstore API</h1>
+<h1>BookStore API</h1>
 <b><time>11.00.1011 00:01</time></b>
 <div>
-<div class=api-docs id=api-docs data-spec='{"openapi":"3.0.1","info":{"title":"Book store API","description":"Useful API for book tracking and cataloging.","version":"1.0","x:thumbnail":"https:\/\/www.mediaplace.us\/wp-content\/uploads\/2018\/08\/Barnes-Noble-logo.png"},"servers":[{"url":"https:\/\/contoso.com"}],"paths":{"\/books":{"get":{"summary":"Get all books","description":"Get all books","operationId":"get-all-books","responses":{"200":{"description":"","content":{"application\/json":{"schema":{"ef":"#\/components\/schemas\/Book"}}}}}}}},"components":{"schemas":{"Author":{"required":["firstName","lastName"],"type":"object","properties":{"firstName":{"type":"string","description":"Authors first name.","example":"Rudyard"},"lastName":{"type":"string","description":"Authors last name.","example":"Kipling"},"address":{"type":"object","properties":{"street":{"type":"string","example":"7319 Douglas Ave SE"},"city":{"type":"string","example":"Snoqualmie"}}}},"description":"Entity that describes a book author."},"Book":{"required":["title","author","published"],"type":"object","properties":{"isbn":{"type":"string","description":"The International Standard Book Number (ISBN) is a numeric commercial book identifier which is intended to be unique.","example":"X-XXXXXX-XX-1"},"title":{"type":"string","description":"Book title.","example":"The Jungle Book"},"author":{"ef":"#\/components\/schemas\/Author"},"coAuthors":{"type":"array","items":{"ef":"#\/components\/schemas\/Author"}},"published":{"type":"number","description":"Year the book was published.","example":1894}},"description":"A book.","example":{"isbn":"X-XXXXXX-XX-1","title":"The Jungle book","author":"Rudyard Kipling","published":1894}}},"securitySchemes":{"apiKeyHeader":{"type":"apiKey","name":"Ocp-Apim-Subscription-Key","in":"header"},"apiKeyQuery":{"type":"apiKey","name":"subscription-key","in":"query"}}},"security":[{"apiKeyHeader":[]},{"apiKeyQuery":[]}]}'></div>
+<div class=api-docs id=petstore-container data-spec=https://petstore3.swagger.io/api/v3/openapi.json></div>
 </div>
 </article>
 </main>
@@ -40,7 +40,7 @@
 </div>
 <div>
 <ul>
-<li><a href=/kamrad/docs/bookstore/>bookstore API</a></li>
+<li><a href=/kamrad/docs/bookstore/>BookStore API</a></li>
 <li><a href=/kamrad/docs/combined/>BookStore API & Pet Store</a></li>
 <li><a href=/kamrad/docs/dogs/>dogs API</a></li>
 <li><a href=/kamrad/docs/petstore/>PetStore API Spec</a></li>

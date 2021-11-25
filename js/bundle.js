@@ -7166,7 +7166,7 @@
         const postLogin = (event) => {
           event.preventDefault();
           setAuthToken(token);
-          window.location.assign("/");
+          window.location.assign("/kamrad");
         };
         return /* @__PURE__ */ import_react.default.createElement(LoginForm, {
           token,
@@ -14412,7 +14412,7 @@ object-assign
         const isLoggedIn = !!window.localStorage.getItem(isAuthenticated);
         const logout = () => {
           clearAuthToken();
-          window.location.assign("/login");
+          window.location.assign("/kamrad/login");
         };
         return isLoggedIn && /* @__PURE__ */ import_react.default.createElement("a", {
           href: "#",
