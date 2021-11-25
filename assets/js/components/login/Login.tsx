@@ -33,7 +33,8 @@ const Login: React.FunctionComponent = () => {
     event.preventDefault()
     // TODO: Create service to validate the token before saving it.
     setAuthToken(token)
-    window.location.assign('/')
+    // TODO: Get from $.Site.BaseURL
+    window.location.assign('/kamrad')
   }
 
   return (
