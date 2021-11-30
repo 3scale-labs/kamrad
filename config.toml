@@ -9,13 +9,29 @@ theme = "smol"
 subtitle = "Kamrad, the Kuadrant's developer portal"
 dateFmt = "11.05.2021 15:51"
 kamwielURL = "https://kamwiel.eu.ngrok.io" # Replace with the URL of your Kuadrant cluster
+### docdocks only
+editURL = "https://github.com/3scale-labs/kamrad/edit/main/content/"
+showVisitedLinks = true # default is false
+themeStyle = "flex" # "original" or "flex" # default "flex"
+themeVariant = "" # choose theme variant "green", "gold" , "gray", "blue" (default)
+ordersectionsby = "weight" # ordersectionsby = "title"
+disableHomeIcon = false # default is false
+disableSearch = false # default is false
+disableNavChevron = false # set true to hide next/prev chevron, default is false
+highlightClientSide = false # set true to use highlight.pack.js instead of the default hugo chroma highlighter
+menushortcutsnewtab = false # set true to open shortcuts links to a new tab/window
+enableGitInfo = true
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
 
 ## Header
 [menu]
 [[menu.main]]
-identifier = "posts"
-name = "Posts"
-url = "/posts/"
+identifier = "about"
+name = "About"
+url = "/about"
 weight = 1
 
 [[menu.main]]
@@ -25,17 +41,10 @@ url = "/docs/"
 weight = 2
 
 [[menu.main]]
-identifier = "about"
-name = "About"
-url = "/about"
-weight = 3
-
-[[menu.main]]
 identifier = "pong"
 name = "Pong!"
 url = "/pong"
-weight = 4
-
+weight = 3
 
 ## Footer
 [[menu.footer]]
@@ -57,3 +66,28 @@ weight = 1
 # Build
 [build]
   noJSConfigInAssets = true
+
+# docdock only
+[[menu.shortcuts]]
+identifier = "about"
+name = "About"
+url = "/about"
+weight = 1
+
+[[menu.shortcuts]]
+identifier = "docs"
+name = "Docs"
+url = "/docs/"
+weight = 2
+
+[[menu.shortcuts]]
+identifier = "pong"
+name = "Pong!"
+url = "/pong"
+weight = 3
+
+[[menu.shortcuts]]
+identifier = 'logout'
+name = "<span id='logoutButton'> Logout</span>"
+url = '/login'
+weight = 4
