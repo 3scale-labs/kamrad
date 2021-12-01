@@ -2,7 +2,7 @@ baseURL = "https://3scale-labs.github.io/kamrad" # Replace with the URL where yo
 languageCode = "en-us"
 
 # Theme
-theme = "smol"
+theme = "docdock"
 
 ## Parameters
 [params]
