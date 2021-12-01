@@ -10,8 +10,8 @@ import {
 const whitelistedOrigins: string[] = [
   'http://localhost:8080',
   'http://kamwiel-authorino.127.0.0.1.nip.io:8000',
-  'http//kamwiel.eu.ngrok.io',
-  'https//kamwiel.eu.ngrok.io'
+  'http://kamwiel.eu.ngrok.io',
+  'https://kamwiel.eu.ngrok.io'
 ]
 
 // const whitelistedPathRegex = /\/api\/[^.]*$/ // anything under /api
