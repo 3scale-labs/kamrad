@@ -595,7 +595,7 @@
   var _asyncToGenerator2 = _interopRequireDefault(require_asyncToGenerator());
   var _defineProperty2 = _interopRequireDefault(require_defineProperty());
   var _types = (init_types(), types_exports);
-  var whitelistedOrigins = ["http://localhost:8080", "http://kamwiel-authorino.127.0.0.1.nip.io:8000", "http//kamwiel.eu.ngrok.io", "https//kamwiel.eu.ngrok.io"];
+  var whitelistedOrigins = ["http://localhost:8080", "http://kamwiel-authorino.127.0.0.1.nip.io:8000", "http://kamwiel.eu.ngrok.io", "https://kamwiel.eu.ngrok.io"];
   var worker = self;
   var token = "";
   var authBroadcastChannel = new BroadcastChannel(_types.authBroadCastChannelName);
