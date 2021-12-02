@@ -3,8 +3,8 @@
 <title>Kamrad</title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name=revised content="2021-12-02T16:45:17 UTC">
-<title>404 Page not found :: Kamrad</title>
+<meta name=revised content="2021-12-02T16:45:16 UTC">
+<title>bookstore API :: Kamrad</title>
 <link rel="shortcut icon" href=/kamrad/images/favicon.png type=image/x-icon>
 <link href=/kamrad/css/nucleus.css rel=stylesheet>
 <link href=/kamrad/css/font-awesome.min.css rel=stylesheet>
@@ -12,9 +12,10 @@
 <link href=/kamrad/css/auto-complete.css rel=stylesheet>
 <link href=/kamrad/theme-flex/style.css rel=stylesheet>
 <link rel=stylesheet href=/kamrad/css/bootstrap.min.css>
+<link type=text/css rel=stylesheet href=https://3scale-labs.github.io/kamrad/scss/api-docs/main.min.css>
 <meta name=description content>
 </head>
-<body data-url=/kamrad/404.html>
+<body data-url=/kamrad/docs/bookstore/>
 <header>
 <div class=logo>
 <a class=baselink href=https://3scale-labs.github.io/kamrad>Kamrad</a>
@@ -99,7 +100,7 @@ PetStore API Spec
 <div class=nav-select>
 <center>Navigation :
 <select onchange="location.href=this.value"><option value=/kamrad/docs/>
-Docs</option><option value=/kamrad/posts/>
+Docs</option><option value=/kamrad/docs/bookstore/ selected>- bookstore API</option><option value=/kamrad/docs/cats/>- cats API</option><option value=/kamrad/docs/dogs/>- dogs API</option><option value=/kamrad/docs/petstore/>- PetStore API Spec</option><option value=/kamrad/posts/>
 </option></select>
 </center>
 </div>
@@ -108,24 +109,19 @@ Docs</option><option value=/kamrad/posts/>
 <input data-search-input id=search-by type=text placeholder=Search...>
 </div>
 </div>
-<h1>404 Page not found</h1>
-<h1>Error</h1>
-<p>
-</p>
-<p>Woops. Looks like this page doesn't exist.</p>
-<p></p>
-<p><a href=https://3scale-labs.github.io/kamrad>Go to homepage</a></p>
-<p><img src=/kamrad/images/gopher-404.jpg style=width:50%></img></p>
+<h1>bookstore API</h1>
+<div class=api-docs id=api-docs data-spec='{"openapi":"3.0.1","info":{"title":"Book store API","description":"Useful API for book tracking and cataloging.","version":"1.0","x:thumbnail":"https:\/\/www.mediaplace.us\/wp-content\/uploads\/2018\/08\/Barnes-Noble-logo.png"},"servers":[{"url":"https:\/\/contoso.com"}],"paths":{"\/books":{"get":{"summary":"Get all books","description":"Get all books","operationId":"get-all-books","responses":{"200":{"description":"","content":{"application\/json":{"schema":{"ef":"#\/components\/schemas\/Book"}}}}}}}},"components":{"schemas":{"Author":{"required":["firstName","lastName"],"type":"object","properties":{"firstName":{"type":"string","description":"Authors first name.","example":"Rudyard"},"lastName":{"type":"string","description":"Authors last name.","example":"Kipling"},"address":{"type":"object","properties":{"street":{"type":"string","example":"7319 Douglas Ave SE"},"city":{"type":"string","example":"Snoqualmie"}}}},"description":"Entity that describes a book author."},"Book":{"required":["title","author","published"],"type":"object","properties":{"isbn":{"type":"string","description":"The International Standard Book Number (ISBN) is a numeric commercial book identifier which is intended to be unique.","example":"X-XXXXXX-XX-1"},"title":{"type":"string","description":"Book title.","example":"The Jungle Book"},"author":{"ef":"#\/components\/schemas\/Author"},"coAuthors":{"type":"array","items":{"ef":"#\/components\/schemas\/Author"}},"published":{"type":"number","description":"Year the book was published.","example":1894}},"description":"A book.","example":{"isbn":"X-XXXXXX-XX-1","title":"The Jungle book","author":"Rudyard Kipling","published":1894}}},"securitySchemes":{"apiKeyHeader":{"type":"apiKey","name":"Ocp-Apim-Subscription-Key","in":"header"},"apiKeyQuery":{"type":"apiKey","name":"subscription-key","in":"query"}}},"security":[{"apiKeyHeader":[]},{"apiKeyQuery":[]}]}'></div>
 <div class=chevrons>
 <div id=navigation>
-<a class="nav nav-next" href=/kamrad/docs/ title=Docs style=margin-right:0><label>Docs</label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href=/kamrad/docs/ title=Docs> <i class="fa fa-chevron-left"></i><label>Docs</label></a>
+<a class="nav nav-next" href=/kamrad/docs/cats/ title="cats API" style=margin-right:0><label>cats API</label><i class="fa fa-chevron-right"></i></a></div>
 </div>
 </section>
 </article>
 <footer>
 <div class=footline>
 <div class=github-link>
-<a href=https://github.com/3scale-labs/kamrad/edit/main/content/ target=blank><i class="fa fa-code-fork"></i>
+<a href=https://github.com/3scale-labs/kamrad/edit/main/content/docs/bookstore.md target=blank><i class="fa fa-code-fork"></i>
 Improve this page</a>
 </div>
 </div>
@@ -142,6 +138,7 @@ Improve this page</a>
 <script src=/kamrad/theme-flex/script.js></script>
 <script src=https://3scale-labs.github.io/kamrad/js/scripts.min.js></script>
 <script>'serviceWorker'in navigator&&window.addEventListener('load',function(){navigator.serviceWorker.register('/kamrad/authServiceWorker.js',{scope:'/kamrad/',origins:['*']}).then(function(a){console.log('ServiceWorker registration successful!')},function(a){console.log('ServiceWorker registration failed: ',a)})}),!/\/login?./.test(window.location.pathname)&&!window.localStorage.getItem('isAuthenticated')&&(window.location='https://3scale-labs.github.io/kamrad/login')</script>
+<script src=/kamrad/js/apiDocs.js></script>
 <script src=/kamrad/js/bundle.js></script>
 </body>
 </html>
