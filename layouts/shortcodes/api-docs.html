@@ -1,5 +1,0 @@
-{{ if .IsNamedParams }}
-  <div class="api-docs" id="{{ .Get "id" }}" data-spec="{{.Get "spec"}}"></div>
-{{ else }}
-  <div class="api-docs" id="api-docs" data-spec="{{.Get 0}}"></div>
-{{ end }}
