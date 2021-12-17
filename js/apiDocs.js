@@ -18267,7 +18267,7 @@
           }
         }() : c, p = n(1080)(), f = Object.getPrototypeOf || function(e2) {
           return e2.__proto__;
-        }, h = {}, d = typeof Uint8Array == "undefined" ? r : f(Uint8Array), m = { "%AggregateError%": typeof AggregateError == "undefined" ? r : AggregateError, "%Array%": Array, "%ArrayBuffer%": typeof ArrayBuffer == "undefined" ? r : ArrayBuffer, "%ArrayIteratorPrototype%": p ? f([][Symbol.iterator]()) : r, "%AsyncFromSyncIteratorPrototype%": r, "%AsyncFunction%": h, "%AsyncGenerator%": h, "%AsyncGeneratorFunction%": h, "%AsyncIteratorPrototype%": h, "%Atomics%": typeof Atomics == "undefined" ? r : Atomics, "%BigInt%": typeof BigInt == "undefined" ? r : BigInt, "%Boolean%": Boolean, "%DataView%": typeof DataView == "undefined" ? r : DataView, "%Date%": Date, "%decodeURI%": decodeURI, "%decodeURIComponent%": decodeURIComponent, "%encodeURI%": encodeURI, "%encodeURIComponent%": encodeURIComponent, "%Error%": Error, "%eval%": eval, "%EvalError%": EvalError, "%Float32Array%": typeof Float32Array == "undefined" ? r : Float32Array, "%Float64Array%": typeof Float64Array == "undefined" ? r : Float64Array, "%FinalizationRegistry%": typeof FinalizationRegistry == "undefined" ? r : FinalizationRegistry, "%Function%": a, "%GeneratorFunction%": h, "%Int8Array%": typeof Int8Array == "undefined" ? r : Int8Array, "%Int16Array%": typeof Int16Array == "undefined" ? r : Int16Array, "%Int32Array%": typeof Int32Array == "undefined" ? r : Int32Array, "%isFinite%": isFinite, "%isNaN%": isNaN, "%IteratorPrototype%": p ? f(f([][Symbol.iterator]())) : r, "%JSON%": typeof JSON == "object" ? JSON : r, "%Map%": typeof Map == "undefined" ? r : Map, "%MapIteratorPrototype%": typeof Map != "undefined" && p ? f(new Map()[Symbol.iterator]()) : r, "%Math%": Math, "%Number%": Number, "%Object%": Object, "%parseFloat%": parseFloat, "%parseInt%": parseInt, "%Promise%": typeof Promise == "undefined" ? r : Promise, "%Proxy%": typeof Proxy == "undefined" ? r : Proxy, "%RangeError%": RangeError, "%ReferenceError%": ReferenceError, "%Reflect%": typeof Reflect == "undefined" ? r : Reflect, "%RegExp%": RegExp, "%Set%": typeof Set == "undefined" ? r : Set, "%SetIteratorPrototype%": typeof Set != "undefined" && p ? f(new Set()[Symbol.iterator]()) : r, "%SharedArrayBuffer%": typeof SharedArrayBuffer == "undefined" ? r : SharedArrayBuffer, "%String%": String, "%StringIteratorPrototype%": p ? f(""[Symbol.iterator]()) : r, "%Symbol%": p ? Symbol : r, "%SyntaxError%": o, "%ThrowTypeError%": l, "%TypedArray%": d, "%TypeError%": i, "%Uint8Array%": typeof Uint8Array == "undefined" ? r : Uint8Array, "%Uint8ClampedArray%": typeof Uint8ClampedArray == "undefined" ? r : Uint8ClampedArray, "%Uint16Array%": typeof Uint16Array == "undefined" ? r : Uint16Array, "%Uint32Array%": typeof Uint32Array == "undefined" ? r : Uint32Array, "%URIError%": URIError, "%WeakMap%": typeof WeakMap == "undefined" ? r : WeakMap, "%WeakRef%": typeof WeakRef == "undefined" ? r : WeakRef, "%WeakSet%": typeof WeakSet == "undefined" ? r : WeakSet }, v = function e2(t2) {
+        }, h = {}, d = typeof Uint8Array == "undefined" ? r : f(Uint8Array), m = { "%AggregateError%": typeof AggregateError == "undefined" ? r : AggregateError, "%Array%": Array, "%ArrayBuffer%": typeof ArrayBuffer == "undefined" ? r : ArrayBuffer, "%ArrayIteratorPrototype%": p ? f([][Symbol.iterator]()) : r, "%AsyncFromSyncIteratorPrototype%": r, "%AsyncFunction%": h, "%AsyncGenerator%": h, "%AsyncGeneratorFunction%": h, "%AsyncIteratorPrototype%": h, "%Atomics%": typeof Atomics == "undefined" ? r : Atomics, "%BigInt%": typeof BigInt == "undefined" ? r : BigInt, "%Boolean%": Boolean, "%DataView%": typeof DataView == "undefined" ? r : DataView, "%Date%": Date, "%decodeURI%": decodeURI, "%decodeURIComponent%": decodeURIComponent, "%encodeURI%": encodeURI, "%encodeURIComponent%": encodeURIComponent, "%Error%": Error, "%eval%": eval, "%EvalError%": EvalError, "%Float32Array%": typeof Float32Array == "undefined" ? r : Float32Array, "%Float64Array%": typeof Float64Array == "undefined" ? r : Float64Array, "%FinalizationRegistry%": typeof FinalizationRegistry == "undefined" ? r : FinalizationRegistry, "%Function%": a, "%GeneratorFunction%": h, "%Int8Array%": typeof Int8Array == "undefined" ? r : Int8Array, "%Int16Array%": typeof Int16Array == "undefined" ? r : Int16Array, "%Int32Array%": typeof Int32Array == "undefined" ? r : Int32Array, "%isFinite%": isFinite, "%isNaN%": isNaN, "%IteratorPrototype%": p ? f(f([][Symbol.iterator]())) : r, "%JSON%": typeof JSON == "object" ? JSON : r, "%Map%": typeof Map == "undefined" ? r : Map, "%MapIteratorPrototype%": typeof Map != "undefined" && p ? f((/* @__PURE__ */ new Map())[Symbol.iterator]()) : r, "%Math%": Math, "%Number%": Number, "%Object%": Object, "%parseFloat%": parseFloat, "%parseInt%": parseInt, "%Promise%": typeof Promise == "undefined" ? r : Promise, "%Proxy%": typeof Proxy == "undefined" ? r : Proxy, "%RangeError%": RangeError, "%ReferenceError%": ReferenceError, "%Reflect%": typeof Reflect == "undefined" ? r : Reflect, "%RegExp%": RegExp, "%Set%": typeof Set == "undefined" ? r : Set, "%SetIteratorPrototype%": typeof Set != "undefined" && p ? f((/* @__PURE__ */ new Set())[Symbol.iterator]()) : r, "%SharedArrayBuffer%": typeof SharedArrayBuffer == "undefined" ? r : SharedArrayBuffer, "%String%": String, "%StringIteratorPrototype%": p ? f(""[Symbol.iterator]()) : r, "%Symbol%": p ? Symbol : r, "%SyntaxError%": o, "%ThrowTypeError%": l, "%TypedArray%": d, "%TypeError%": i, "%Uint8Array%": typeof Uint8Array == "undefined" ? r : Uint8Array, "%Uint8ClampedArray%": typeof Uint8ClampedArray == "undefined" ? r : Uint8ClampedArray, "%Uint16Array%": typeof Uint16Array == "undefined" ? r : Uint16Array, "%Uint32Array%": typeof Uint32Array == "undefined" ? r : Uint32Array, "%URIError%": URIError, "%WeakMap%": typeof WeakMap == "undefined" ? r : WeakMap, "%WeakRef%": typeof WeakRef == "undefined" ? r : WeakRef, "%WeakSet%": typeof WeakSet == "undefined" ? r : WeakSet }, v = function e2(t2) {
           var n2;
           if (t2 === "%AsyncFunction%")
             n2 = s("async function () {}");
@@ -20522,7 +20522,7 @@
           return e2 != e2 && t2 != t2;
         }
         var dt = new WeakMap(), mt = function(e2) {
-          this.observers = new Map(), this.obj = e2;
+          this.observers = /* @__PURE__ */ new Map(), this.obj = e2;
         }, vt = function(e2, t2) {
           this.callback = e2, this.observer = t2;
         };
@@ -23823,7 +23823,7 @@
           }
         }
         if (typeof Array.from == "function" && typeof Map == "function" && f(Map) && Map.prototype != null && typeof Map.prototype.keys == "function" && f(Map.prototype.keys) && typeof Set == "function" && f(Set) && Set.prototype != null && typeof Set.prototype.keys == "function" && f(Set.prototype.keys)) {
-          var h = new Map(), d = new Set();
+          var h = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new Set();
           r = function(e2, t2) {
             h.set(e2, t2);
           }, o = function(e2) {
@@ -37843,14 +37843,14 @@
     }
   });
 
-  // ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/api-docs/renderApiDocs.ts
+  // ns-hugo:/home/runner/work/kamrad/kamrad/themes/kamrad-shortcodes/assets/js/api-docs/renderApiDocs.ts
   var renderApiDocs_exports = {};
   __export(renderApiDocs_exports, {
     renderApiDocs: () => renderApiDocs
   });
   var import_swagger_ui, urlExpression, urlRegex, renderApiDocs;
   var init_renderApiDocs = __esm({
-    "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/api-docs/renderApiDocs.ts"() {
+    "ns-hugo:/home/runner/work/kamrad/kamrad/themes/kamrad-shortcodes/assets/js/api-docs/renderApiDocs.ts"() {
       import_swagger_ui = __toModule(require_swagger_ui_es_bundle());
       urlExpression = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
       urlRegex = new RegExp(urlExpression);

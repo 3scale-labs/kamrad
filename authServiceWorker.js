@@ -575,16 +575,18 @@
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/auth/types.ts"() {
       authBroadCastChannelName = "broadcastAuthChannel";
       isAuthenticated = "isAuthenticated";
-      (function(AuthBroadcastEvent2) {
+      AuthBroadcastEvent = /* @__PURE__ */ ((AuthBroadcastEvent2) => {
         AuthBroadcastEvent2["TokenSetEvent"] = "TOKEN_SET";
         AuthBroadcastEvent2["TokenClearedEvent"] = "TOKEN_CLEARED";
         AuthBroadcastEvent2["TokenCheckedEvent"] = "TOKEN_CHECKED";
-      })(AuthBroadcastEvent || (AuthBroadcastEvent = {}));
-      (function(AuthMessageEvent2) {
+        return AuthBroadcastEvent2;
+      })(AuthBroadcastEvent || {});
+      AuthMessageEvent = /* @__PURE__ */ ((AuthMessageEvent2) => {
         AuthMessageEvent2["CheckTokenEvent"] = "CHECK_TOKEN";
         AuthMessageEvent2["SetTokenEvent"] = "SET_TOKEN";
         AuthMessageEvent2["ClearTokenEvent"] = "CLEAR_TOKEN";
-      })(AuthMessageEvent || (AuthMessageEvent = {}));
+        return AuthMessageEvent2;
+      })(AuthMessageEvent || {});
     }
   });
 
