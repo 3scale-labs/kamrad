@@ -54,3 +54,15 @@ weight = 1
 # Build
 [build]
 noJSConfigInAssets = true
+
+# Security
+[security]
+  enableInlineShortcodes = false
+  [security.exec]
+    allow = ['^babel$', '^go$', '^npx$', '^postcss$']
+    osEnv = ['(?i)^(PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)$']
+  [security.funcs]
+    getenv = ['^HUGO_']
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']
