@@ -37,10 +37,16 @@ url = "/docs/"
 weight = 2
 
 [[menu.main]]
+identifier = "specs"
+name = "Specs"
+url = "/specs"
+weight = 3
+
+[[menu.main]]
 identifier = "pong"
 name = "Pong!"
 url = "/pong"
-weight = 3
+weight = 4
 
 ## Footer
 [[menu.footer]]
