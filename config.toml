@@ -42,12 +42,6 @@ name = "Specs"
 url = "/specs"
 weight = 3
 
-[[menu.main]]
-identifier = "pong"
-name = "Pong!"
-url = "/pong"
-weight = 4
-
 ## Footer
 [[menu.footer]]
 name = "Github"
