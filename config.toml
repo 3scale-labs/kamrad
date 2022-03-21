@@ -4,6 +4,14 @@ languageCode = "en-us"
 # Theme
 theme = ["kamrad-shortcodes", "smol"]
 
+# Taxonomies
+[taxonomies]
+spec_ref = "specs_refs"
+
+# Permalinks
+[permalinks]
+specs_refs = "/spec/:title"
+
 ## Parameters
 [params]
 subtitle = "Kamrad, the Kuadrant's developer portal"
@@ -29,10 +37,16 @@ url = "/docs/"
 weight = 2
 
 [[menu.main]]
+identifier = "specs"
+name = "Specs"
+url = "/specs"
+weight = 3
+
+[[menu.main]]
 identifier = "pong"
 name = "Pong!"
 url = "/pong"
-weight = 3
+weight = 4
 
 ## Footer
 [[menu.footer]]
