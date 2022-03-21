@@ -1,17 +1,33 @@
+"use strict";
 (() => {
   var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
   var __esm = (fn, res) => function __init() {
-    return fn && (res = (0, fn[Object.keys(fn)[0]])(fn = 0)), res;
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
   var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
-    __markAsModule(target);
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
   };
+  var __reExport = (target, module, copyDefault, desc) => {
+    if (module && typeof module === "object" || typeof module === "function") {
+      for (let key of __getOwnPropNames(module))
+        if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
+          __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
+    }
+    return target;
+  };
+  var __toCommonJS = /* @__PURE__ */ ((cache) => {
+    return (module, temp) => {
+      return cache && cache.get(module) || (temp = __reExport(__markAsModule({}), module, 1), cache && cache.set(module, temp), temp);
+    };
+  })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
 
   // node_modules/@babel/runtime/helpers/interopRequireDefault.js
   var require_interopRequireDefault = __commonJS({
@@ -21,8 +37,7 @@
           "default": obj
         };
       }
-      module.exports = _interopRequireDefault2;
-      module.exports["default"] = module.exports, module.exports.__esModule = true;
+      module.exports = _interopRequireDefault2, module.exports.__esModule = true, module.exports["default"] = module.exports;
     }
   });
 
@@ -81,17 +96,18 @@
         function GeneratorFunctionPrototype() {
         }
         var IteratorPrototype = {};
-        IteratorPrototype[iteratorSymbol] = function() {
+        define(IteratorPrototype, iteratorSymbol, function() {
           return this;
-        };
+        });
         var getProto = Object.getPrototypeOf;
         var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
         if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
           IteratorPrototype = NativeIteratorPrototype;
         }
         var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
-        GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-        GeneratorFunctionPrototype.constructor = GeneratorFunction;
+        GeneratorFunction.prototype = GeneratorFunctionPrototype;
+        define(Gp, "constructor", GeneratorFunctionPrototype);
+        define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
         GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction");
         function defineIteratorMethods(prototype) {
           ["next", "throw", "return"].forEach(function(method) {
@@ -152,9 +168,9 @@
           this._invoke = enqueue;
         }
         defineIteratorMethods(AsyncIterator.prototype);
-        AsyncIterator.prototype[asyncIteratorSymbol] = function() {
+        define(AsyncIterator.prototype, asyncIteratorSymbol, function() {
           return this;
-        };
+        });
         exports2.AsyncIterator = AsyncIterator;
         exports2.async = function(innerFn, outerFn, self2, tryLocsList, PromiseImpl) {
           if (PromiseImpl === void 0)
@@ -265,12 +281,12 @@
         }
         defineIteratorMethods(Gp);
         define(Gp, toStringTagSymbol, "Generator");
-        Gp[iteratorSymbol] = function() {
+        define(Gp, iteratorSymbol, function() {
           return this;
-        };
-        Gp.toString = function() {
+        });
+        define(Gp, "toString", function() {
           return "[object Generator]";
-        };
+        });
         function pushTryEntry(locs) {
           var entry = { tryLoc: locs[0] };
           if (1 in locs) {
@@ -492,7 +508,11 @@
       try {
         regeneratorRuntime = runtime;
       } catch (accidentalStrictMode) {
-        Function("r", "regeneratorRuntime = r")(runtime);
+        if (typeof globalThis === "object") {
+          globalThis.regeneratorRuntime = runtime;
+        } else {
+          Function("r", "regeneratorRuntime = r")(runtime);
+        }
       }
     }
   });
@@ -536,8 +556,7 @@
           });
         };
       }
-      module.exports = _asyncToGenerator;
-      module.exports["default"] = module.exports, module.exports.__esModule = true;
+      module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
     }
   });
 
@@ -557,8 +576,7 @@
         }
         return obj;
       }
-      module.exports = _defineProperty;
-      module.exports["default"] = module.exports, module.exports.__esModule = true;
+      module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
     }
   });
 
@@ -591,12 +609,11 @@
   });
 
   // <stdin>
-  "use strict";
   var _interopRequireDefault = require_interopRequireDefault();
   var _regenerator = _interopRequireDefault(require_regenerator());
   var _asyncToGenerator2 = _interopRequireDefault(require_asyncToGenerator());
   var _defineProperty2 = _interopRequireDefault(require_defineProperty());
-  var _types = (init_types(), types_exports);
+  var _types = (init_types(), __toCommonJS(types_exports));
   var whitelistedOrigins = ["http://localhost:8080", "http://kamwiel-authorino.127.0.0.1.nip.io:8000", "http://kamwiel.eu.ngrok.io", "https://kamwiel.eu.ngrok.io"];
   var worker = self;
   var token = "";

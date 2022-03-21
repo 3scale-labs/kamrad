@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -7,48 +8,44 @@
   var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
   var __esm = (fn, res) => function __init() {
-    return fn && (res = (0, fn[Object.keys(fn)[0]])(fn = 0)), res;
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
   var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
-    __markAsModule(target);
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
   };
-  var __reExport = (target, module, desc) => {
+  var __reExport = (target, module, copyDefault, desc) => {
     if (module && typeof module === "object" || typeof module === "function") {
       for (let key of __getOwnPropNames(module))
-        if (!__hasOwnProp.call(target, key) && key !== "default")
+        if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
           __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
     }
     return target;
   };
-  var __toModule = (module) => {
-    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
+  var __toESM = (module, isNodeMode) => {
+    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", !isNodeMode && module && module.__esModule ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
   };
+  var __toCommonJS = /* @__PURE__ */ ((cache) => {
+    return (module, temp) => {
+      return cache && cache.get(module) || (temp = __reExport(__markAsModule({}), module, 1), cache && cache.set(module, temp), temp);
+    };
+  })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
 
   // node_modules/@babel/runtime/helpers/typeof.js
   var require_typeof = __commonJS({
     "node_modules/@babel/runtime/helpers/typeof.js"(exports, module) {
       function _typeof2(obj) {
         "@babel/helpers - typeof";
-        if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-          module.exports = _typeof2 = function _typeof3(obj2) {
-            return typeof obj2;
-          };
-          module.exports["default"] = module.exports, module.exports.__esModule = true;
-        } else {
-          module.exports = _typeof2 = function _typeof3(obj2) {
-            return obj2 && typeof Symbol === "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
-          };
-          module.exports["default"] = module.exports, module.exports.__esModule = true;
-        }
-        return _typeof2(obj);
+        return module.exports = _typeof2 = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(obj2) {
+          return typeof obj2;
+        } : function(obj2) {
+          return obj2 && typeof Symbol == "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
+        }, module.exports.__esModule = true, module.exports["default"] = module.exports, _typeof2(obj);
       }
-      module.exports = _typeof2;
-      module.exports["default"] = module.exports, module.exports.__esModule = true;
+      module.exports = _typeof2, module.exports.__esModule = true, module.exports["default"] = module.exports;
     }
   });
 
@@ -7100,23 +7097,11 @@
   });
 
   // ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/auth/types.ts
-  var authBroadCastChannelName, isAuthenticated, AuthBroadcastEvent, AuthMessageEvent;
+  var authBroadCastChannelName, isAuthenticated;
   var init_types = __esm({
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/auth/types.ts"() {
       authBroadCastChannelName = "broadcastAuthChannel";
       isAuthenticated = "isAuthenticated";
-      AuthBroadcastEvent = /* @__PURE__ */ ((AuthBroadcastEvent2) => {
-        AuthBroadcastEvent2["TokenSetEvent"] = "TOKEN_SET";
-        AuthBroadcastEvent2["TokenClearedEvent"] = "TOKEN_CLEARED";
-        AuthBroadcastEvent2["TokenCheckedEvent"] = "TOKEN_CHECKED";
-        return AuthBroadcastEvent2;
-      })(AuthBroadcastEvent || {});
-      AuthMessageEvent = /* @__PURE__ */ ((AuthMessageEvent2) => {
-        AuthMessageEvent2["CheckTokenEvent"] = "CHECK_TOKEN";
-        AuthMessageEvent2["SetTokenEvent"] = "SET_TOKEN";
-        AuthMessageEvent2["ClearTokenEvent"] = "CLEAR_TOKEN";
-        return AuthMessageEvent2;
-      })(AuthMessageEvent || {});
     }
   });
 
@@ -7126,13 +7111,13 @@
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/auth/authHelper.ts"() {
       init_types();
       setAuthToken = (token) => navigator.serviceWorker.controller.postMessage({
-        type: AuthMessageEvent.SetTokenEvent,
+        type: "SET_TOKEN" /* SetTokenEvent */,
         payload: token
       });
       broadcastEventHandlers = ({ data }) => ({
-        [AuthBroadcastEvent.TokenSetEvent]: () => window.localStorage.setItem(isAuthenticated, "1"),
-        [AuthBroadcastEvent.TokenClearedEvent]: () => window.localStorage.removeItem(isAuthenticated),
-        [AuthBroadcastEvent.TokenCheckedEvent]: () => {
+        ["TOKEN_SET" /* TokenSetEvent */]: () => window.localStorage.setItem(isAuthenticated, "1"),
+        ["TOKEN_CLEARED" /* TokenClearedEvent */]: () => window.localStorage.removeItem(isAuthenticated),
+        ["TOKEN_CHECKED" /* TokenCheckedEvent */]: () => {
         }
       })[data.type]();
       authBroadcastChannel = new BroadcastChannel(authBroadCastChannelName);
@@ -7148,7 +7133,7 @@
   var import_react, LoginForm, Login;
   var init_Login = __esm({
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/components/login/Login.tsx"() {
-      import_react = __toModule(require_react());
+      import_react = __toESM(require_react());
       init_authHelper();
       LoginForm = ({
         token,
@@ -7180,16 +7165,15 @@
   });
 
   // <stdin>
-  "use strict";
   var _typeof = require_typeof();
   var React2 = _interopRequireWildcard(require_react());
   var ReactDOM = _interopRequireWildcard(require_react_dom());
-  var _Login = (init_Login(), Login_exports);
+  var _Login = (init_Login(), __toCommonJS(Login_exports));
   function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function")
       return null;
-    var cacheBabelInterop = new WeakMap();
-    var cacheNodeInterop = new WeakMap();
+    var cacheBabelInterop = /* @__PURE__ */ new WeakMap();
+    var cacheNodeInterop = /* @__PURE__ */ new WeakMap();
     return (_getRequireWildcardCache = function _getRequireWildcardCache2(nodeInterop2) {
       return nodeInterop2 ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
@@ -7260,6 +7244,7 @@ object-assign
  */
 
 ;
+"use strict";
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -7269,48 +7254,44 @@ object-assign
   var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
   var __esm = (fn, res) => function __init() {
-    return fn && (res = (0, fn[Object.keys(fn)[0]])(fn = 0)), res;
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
   var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
-    __markAsModule(target);
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
   };
-  var __reExport = (target, module, desc) => {
+  var __reExport = (target, module, copyDefault, desc) => {
     if (module && typeof module === "object" || typeof module === "function") {
       for (let key of __getOwnPropNames(module))
-        if (!__hasOwnProp.call(target, key) && key !== "default")
+        if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
           __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
     }
     return target;
   };
-  var __toModule = (module) => {
-    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
+  var __toESM = (module, isNodeMode) => {
+    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", !isNodeMode && module && module.__esModule ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
   };
+  var __toCommonJS = /* @__PURE__ */ ((cache) => {
+    return (module, temp) => {
+      return cache && cache.get(module) || (temp = __reExport(__markAsModule({}), module, 1), cache && cache.set(module, temp), temp);
+    };
+  })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
 
   // node_modules/@babel/runtime/helpers/typeof.js
   var require_typeof = __commonJS({
     "node_modules/@babel/runtime/helpers/typeof.js"(exports, module) {
       function _typeof2(obj) {
         "@babel/helpers - typeof";
-        if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-          module.exports = _typeof2 = function _typeof3(obj2) {
-            return typeof obj2;
-          };
-          module.exports["default"] = module.exports, module.exports.__esModule = true;
-        } else {
-          module.exports = _typeof2 = function _typeof3(obj2) {
-            return obj2 && typeof Symbol === "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
-          };
-          module.exports["default"] = module.exports, module.exports.__esModule = true;
-        }
-        return _typeof2(obj);
+        return module.exports = _typeof2 = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(obj2) {
+          return typeof obj2;
+        } : function(obj2) {
+          return obj2 && typeof Symbol == "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
+        }, module.exports.__esModule = true, module.exports["default"] = module.exports, _typeof2(obj);
       }
-      module.exports = _typeof2;
-      module.exports["default"] = module.exports, module.exports.__esModule = true;
+      module.exports = _typeof2, module.exports.__esModule = true, module.exports["default"] = module.exports;
     }
   });
 
@@ -14362,23 +14343,11 @@ object-assign
   });
 
   // ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/auth/types.ts
-  var authBroadCastChannelName, isAuthenticated, AuthBroadcastEvent, AuthMessageEvent;
+  var authBroadCastChannelName, isAuthenticated;
   var init_types = __esm({
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/auth/types.ts"() {
       authBroadCastChannelName = "broadcastAuthChannel";
       isAuthenticated = "isAuthenticated";
-      AuthBroadcastEvent = /* @__PURE__ */ ((AuthBroadcastEvent2) => {
-        AuthBroadcastEvent2["TokenSetEvent"] = "TOKEN_SET";
-        AuthBroadcastEvent2["TokenClearedEvent"] = "TOKEN_CLEARED";
-        AuthBroadcastEvent2["TokenCheckedEvent"] = "TOKEN_CHECKED";
-        return AuthBroadcastEvent2;
-      })(AuthBroadcastEvent || {});
-      AuthMessageEvent = /* @__PURE__ */ ((AuthMessageEvent2) => {
-        AuthMessageEvent2["CheckTokenEvent"] = "CHECK_TOKEN";
-        AuthMessageEvent2["SetTokenEvent"] = "SET_TOKEN";
-        AuthMessageEvent2["ClearTokenEvent"] = "CLEAR_TOKEN";
-        return AuthMessageEvent2;
-      })(AuthMessageEvent || {});
     }
   });
 
@@ -14388,12 +14357,12 @@ object-assign
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/auth/authHelper.ts"() {
       init_types();
       clearAuthToken = () => navigator.serviceWorker.controller.postMessage({
-        type: AuthMessageEvent.ClearTokenEvent
+        type: "CLEAR_TOKEN" /* ClearTokenEvent */
       });
       broadcastEventHandlers = ({ data }) => ({
-        [AuthBroadcastEvent.TokenSetEvent]: () => window.localStorage.setItem(isAuthenticated, "1"),
-        [AuthBroadcastEvent.TokenClearedEvent]: () => window.localStorage.removeItem(isAuthenticated),
-        [AuthBroadcastEvent.TokenCheckedEvent]: () => {
+        ["TOKEN_SET" /* TokenSetEvent */]: () => window.localStorage.setItem(isAuthenticated, "1"),
+        ["TOKEN_CLEARED" /* TokenClearedEvent */]: () => window.localStorage.removeItem(isAuthenticated),
+        ["TOKEN_CHECKED" /* TokenCheckedEvent */]: () => {
         }
       })[data.type]();
       authBroadcastChannel = new BroadcastChannel(authBroadCastChannelName);
@@ -14409,7 +14378,7 @@ object-assign
   var import_react, LogoutButton;
   var init_Logout = __esm({
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/components/login/Logout.tsx"() {
-      import_react = __toModule(require_react());
+      import_react = __toESM(require_react());
       init_authHelper();
       init_types();
       LogoutButton = () => {
@@ -14427,16 +14396,15 @@ object-assign
   });
 
   // <stdin>
-  "use strict";
   var _typeof = require_typeof();
   var React2 = _interopRequireWildcard(require_react());
   var ReactDOM = _interopRequireWildcard(require_react_dom());
-  var _Logout = (init_Logout(), Logout_exports);
+  var _Logout = (init_Logout(), __toCommonJS(Logout_exports));
   function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function")
       return null;
-    var cacheBabelInterop = new WeakMap();
-    var cacheNodeInterop = new WeakMap();
+    var cacheBabelInterop = /* @__PURE__ */ new WeakMap();
+    var cacheNodeInterop = /* @__PURE__ */ new WeakMap();
     return (_getRequireWildcardCache = function _getRequireWildcardCache2(nodeInterop2) {
       return nodeInterop2 ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);

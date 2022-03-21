@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -7,48 +8,44 @@
   var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
   var __esm = (fn, res) => function __init() {
-    return fn && (res = (0, fn[Object.keys(fn)[0]])(fn = 0)), res;
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
   };
   var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
-    __markAsModule(target);
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
   };
-  var __reExport = (target, module, desc) => {
+  var __reExport = (target, module, copyDefault, desc) => {
     if (module && typeof module === "object" || typeof module === "function") {
       for (let key of __getOwnPropNames(module))
-        if (!__hasOwnProp.call(target, key) && key !== "default")
+        if (!__hasOwnProp.call(target, key) && (copyDefault || key !== "default"))
           __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
     }
     return target;
   };
-  var __toModule = (module) => {
-    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
+  var __toESM = (module, isNodeMode) => {
+    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", !isNodeMode && module && module.__esModule ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
   };
+  var __toCommonJS = /* @__PURE__ */ ((cache) => {
+    return (module, temp) => {
+      return cache && cache.get(module) || (temp = __reExport(__markAsModule({}), module, 1), cache && cache.set(module, temp), temp);
+    };
+  })(typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() : 0);
 
   // node_modules/@babel/runtime/helpers/typeof.js
   var require_typeof = __commonJS({
     "node_modules/@babel/runtime/helpers/typeof.js"(exports, module) {
       function _typeof2(obj) {
         "@babel/helpers - typeof";
-        if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-          module.exports = _typeof2 = function _typeof3(obj2) {
-            return typeof obj2;
-          };
-          module.exports["default"] = module.exports, module.exports.__esModule = true;
-        } else {
-          module.exports = _typeof2 = function _typeof3(obj2) {
-            return obj2 && typeof Symbol === "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
-          };
-          module.exports["default"] = module.exports, module.exports.__esModule = true;
-        }
-        return _typeof2(obj);
+        return module.exports = _typeof2 = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(obj2) {
+          return typeof obj2;
+        } : function(obj2) {
+          return obj2 && typeof Symbol == "function" && obj2.constructor === Symbol && obj2 !== Symbol.prototype ? "symbol" : typeof obj2;
+        }, module.exports.__esModule = true, module.exports["default"] = module.exports, _typeof2(obj);
       }
-      module.exports = _typeof2;
-      module.exports["default"] = module.exports, module.exports.__esModule = true;
+      module.exports = _typeof2, module.exports.__esModule = true, module.exports["default"] = module.exports;
     }
   });
 
@@ -7107,7 +7104,7 @@
   var import_react, Pong;
   var init_Pong = __esm({
     "ns-hugo:/home/runner/work/kamrad/kamrad/assets/js/components/pong/Pong.tsx"() {
-      import_react = __toModule(require_react());
+      import_react = __toESM(require_react());
       Pong = ({ kamwielUrl }) => {
         const [pong, setPong] = (0, import_react.useState)("");
         const [loading, setLoading] = (0, import_react.useState)(true);
@@ -7132,16 +7129,15 @@
   });
 
   // <stdin>
-  "use strict";
   var _typeof = require_typeof();
   var React2 = _interopRequireWildcard(require_react());
   var ReactDOM = _interopRequireWildcard(require_react_dom());
-  var _Pong = (init_Pong(), Pong_exports);
+  var _Pong = (init_Pong(), __toCommonJS(Pong_exports));
   function _getRequireWildcardCache(nodeInterop) {
     if (typeof WeakMap !== "function")
       return null;
-    var cacheBabelInterop = new WeakMap();
-    var cacheNodeInterop = new WeakMap();
+    var cacheBabelInterop = /* @__PURE__ */ new WeakMap();
+    var cacheNodeInterop = /* @__PURE__ */ new WeakMap();
     return (_getRequireWildcardCache = function _getRequireWildcardCache2(nodeInterop2) {
       return nodeInterop2 ? cacheNodeInterop : cacheBabelInterop;
     })(nodeInterop);
