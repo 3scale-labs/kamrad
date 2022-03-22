@@ -5,7 +5,6 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "concurrently \"npm run lint -- --watch\" \"hugo server\"",
-    "lint": "tsc --noEmit",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,22 +27,7 @@
   },
   "homepage": "https://github.com/3scale-labs/kamrad#readme",
   "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.5",
-    "@babel/plugin-transform-runtime": "^7.14.3",
-    "@babel/preset-env": "^7.14.1",
-    "@babel/preset-react": "^7.13.13",
-    "@babel/preset-typescript": "^7.13.0",
-    "@types/react": "^17.0.5",
-    "@types/react-dom": "^17.0.4",
-    "@types/swagger-ui": "^3.47.0",
-    "concurrently": "^6.2.0",
-    "typescript": "^4.2.4"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "swagger-ui": "^3.50.0"
   }
 }
