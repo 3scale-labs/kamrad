@@ -1,4 +1,4 @@
-baseURL = "https://3scale-labs.github.io/kamrad" # Replace with the URL where your Dev Portal will be deployed
+baseURL = "http://localhost:8080" # Replace with the URL where your Dev Portal will be deployed
 languageCode = "en-us"
 
 # Theme
